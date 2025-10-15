@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Carousel } from "react-bootstrap";
 import { motion } from "framer-motion";
-
 export default function BannerCarousel() {
     return (
         <Carousel fade className="mb-4 banner-carousel">

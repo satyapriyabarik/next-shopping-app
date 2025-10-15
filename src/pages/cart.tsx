@@ -1,9 +1,8 @@
-// pages/cart.tsx
 import type { GetServerSideProps } from "next";
 import cookie from "cookie";
 import MainLayout from "@/components/layouts/MainLayout";
 import { sessions } from "./api/login";
-import CheckoutPage from "@/components/checkout/Checkout";
+import CheckoutPage from "./checkout";
 
 export default function CartPage() {
     // If we reached here, getServerSideProps allowed access.

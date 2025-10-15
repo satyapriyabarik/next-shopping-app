@@ -1,12 +1,13 @@
 
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import Link from "next/link";
-import { Navbar, Nav, Container, Badge } from "react-bootstrap";
+import { Navbar, Nav, Container, Badge, Dropdown } from "react-bootstrap";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
 import styles from "styles/Header.module.css";
+import UserMenu from "../userMenu/UserMenu";
 
 // Lazy-load SearchBox
 const SearchBox = lazy(() => import("./SearchBox"));
@@ -68,11 +69,10 @@ export default function Header() {
                     </Navbar.Collapse>
 
                     <div className="d-flex  justify-content-right gap-3 align-items-center">
-                        <Link href="/account" className="text-white position-relative">
-                            <FaUser size={22} />
-                        </Link>
 
-                        <Link href="/checkout" className="text-white position-relative">
+                        <UserMenu />
+
+                        <Link href="/checkout" className="text-white position-relative" title="Shopping Cart">
                             <FaShoppingCart size={22} />
                             {cartCount > 0 && (
                                 <Badge

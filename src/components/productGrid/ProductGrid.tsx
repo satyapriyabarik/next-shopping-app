@@ -1,7 +1,7 @@
 import { Row, Col, Card } from "react-bootstrap";
 import { Product } from "@/types/Product";
 import Link from "next/link";
-import AddToCartButton from "../cart/AddToCartButton";
+import AddToCartButton from "../addToCart/AddToCartButton";
 
 interface ProductGridProps {
     products: Product[];

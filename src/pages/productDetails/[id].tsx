@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import MainLayout from "@/components/layouts";
 import Image from "next/image";
 import { Spinner, Container, Row, Col, Badge } from "react-bootstrap";
-import AddToCartButton from "@/components/cart/AddToCartButton";
+import AddToCartButton from "@/components/addToCart/AddToCartButton";
 import { Product } from "@/types/Product";
 import { getProductById } from "@/lib/api";
 import ProductBrief from "@/components/productBrief/ProductBrief";
@@ -42,9 +42,9 @@ export default function ProductDetail({ initialProduct }: ProductDetailProps) {
 
     return (
         <MainLayout title={product.name}>
-            <div className="product-details-bg py-5">
+            <div className="product-details-bg py-2">
                 <Container>
-                    <Row className="align-items-center">
+                    <Row >
                         {/* Left: Image */}
                         <Col md={6} className="text-center mb-4">
                             <Image

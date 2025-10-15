@@ -25,7 +25,7 @@ export default function SearchSortBar({
                 </InputGroup>
             </Col>
             <Col md={3} className="mb-2">
-                <Form.Select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                <Form.Select value={sortBy} onChange={(e) => setSortBy(e.target.value)} aria-label="Sort products">
                     <option value="">Sort by...</option>
                     <option value="name">Name (A-Z)</option>
                     <option value="price">Price (Low-High)</option>
