@@ -32,8 +32,8 @@ export default function BackToTop() {
                     aria-label="Back to top"
                     data-scroll-behavior="smooth"
                 >
-                    <p className="mb-0 small p-2 text-success fw-bold">
-                        <FaArrowCircleUp /> Back to top
+                    <p className="mb-0 small p-2 text-success fw-bold" title="Back to Top">
+                        <FaArrowCircleUp />
                     </p>
                 </div>
                 : <></>

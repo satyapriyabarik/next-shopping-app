@@ -1,14 +1,13 @@
 import React, { useEffect, useState, Suspense, lazy } from "react";
 import MainLayout from "@/components/layouts";
 import { Product } from "@/types/Product";
-import {
-    Container,
-    Spinner,
-    Alert,
-} from "react-bootstrap";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import BackToTop from "../backToTop/BackToTop";
 import FeaturedProducts from "../featured/FeaturedProducts";
+import { Spinner } from "../common/Spinner/Spinner";
+import { Container } from "../common/Container/Container";
+import { Alert } from "../common/Alert/Alert";
+import { BASE_URL } from "@/constants/apiList";
 
 // 🔹 Lazy components (named chunks)
 const BannerCarousel = lazy(() =>
@@ -28,7 +27,7 @@ const PAGE_SIZE = 6;
 // 🔹 Fetch paginated products
 async function fetchProducts({ pageParam = 1 }): Promise<Product[]> {
     const res = await fetch(
-        `https://my-json-server.typicode.com/satyapriyabarik/nurseryData/initialPlants?_page=${pageParam}&_limit=${PAGE_SIZE}`);
+        BASE_URL + `?_page=${pageParam}&_limit=${PAGE_SIZE}`);
 
     if (!res.ok) throw new Error("Failed to fetch products");
     return res.json();
@@ -104,7 +103,7 @@ export default function HomeContent() {
                     </div>
                 }
             >
-                <Container fluid className="px-4">
+                <Container fluid className="justify-content-center px-4">
                     <h2 className="text-center fw-bold text-success mb-5">
                         🌱 Featured Products
                     </h2>

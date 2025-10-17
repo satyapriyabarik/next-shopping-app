@@ -89,32 +89,27 @@ a {
 
 @keyframes faded {
   0% {
-    background: linear-gradient(180deg, #048426 10%, #ffffff 100%);
-  }
-
-  10% {
-    background: linear-gradient(180deg, #048423 20%, #ffffff 100%);
+    background-position: 0% 0%;
   }
 
   50% {
-    background: linear-gradient(200deg, #048420 30%, #ffffff 100%);
-  }
-
-  90% {
-    background: linear-gradient(220deg, #048418 40%, #ffffff 100%);
+    background-position: 100% 100%;
   }
 
   100% {
-    background: linear-gradient(240deg, #048412 50%, #ffffff 100%);
+    background-position: 0% 0%;
   }
 }
 
-.featured-bg .card {
-  background: linear-gradient(180deg, #6edf8c 60%, #ffffff 100%);
-  animation: faded 8s ease-in-out infinite alternate;
-}
+
 
 /* Make cards slightly bigger */
+.featured-bg .product-card {
+  background: linear-gradient(180deg, #048426, #ffffff);
+  background-size: 400% 400%;
+  animation: faded 8s ease-in-out infinite;
+}
+
 .product-card {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }

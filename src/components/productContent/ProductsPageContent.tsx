@@ -3,10 +3,12 @@
 
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState, useMemo } from "react";
-import { Spinner, Form, Row, Col } from "react-bootstrap";
 import { getProducts, getProductsByCategory } from "@/lib/api";
 import ProductGrid from "@/components/productGrid/ProductGrid";
 import { Product } from "@/types/Product";
+import { Spinner } from "../common/Spinner/Spinner";
+import { Col, Row } from "../common/Grid/Grid";
+import { Form } from "../common/Form/Form";
 
 const PAGE_SIZE = 6;
 
@@ -137,11 +139,13 @@ export default function ProductsPageContent({
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="shadow-sm"
+                        id="search-product"
                     />
                     <Form.Select
                         value={sortOption}
                         onChange={(e) => setSortOption(e.target.value)}
                         className="shadow-sm" title="Sort Products"
+                        id="sort-product"
                     >
                         <option value="">Sort by</option>
                         <option value="priceAsc">Price: Low to High</option>

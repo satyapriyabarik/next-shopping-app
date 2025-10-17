@@ -1,0 +1,149 @@
+/* ---------------------- Responsive wrapper ---------------------- */
+.responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Breakpoint wrappers for responsive tables */
+.responsive-sm {
+    width: 100%;
+}
+
+@media (max-width: 576px) {
+    .responsive-sm {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.responsive-md {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .responsive-md {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.responsive-lg {
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .responsive-lg {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.responsive-xl {
+    width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .responsive-xl {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.responsive-xxl {
+    width: 100%;
+}
+
+@media (max-width: 1400px) {
+    .responsive-xxl {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* ---------------------- Base Table ---------------------- */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        font-family: inherit;
+        background: transparent;
+    }
+
+    /* Cells */
+    .table th,
+    .table td {
+        padding: 0.75rem 1rem;
+        vertical-align: middle;
+        text-align: left;
+        white-space: nowrap;
+        border: 1px solid transparent;
+        /* default no border unless bordered */
+    }
+
+    /* ---------------------- Bordered ---------------------- */
+    .bordered {
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+    }
+
+    .bordered th,
+    .bordered td {
+        border: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    /* ---------------------- Hover ---------------------- */
+    .hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    /* ---------------------- Striped ---------------------- */
+    .striped tbody tr:nth-child(odd) {
+        background-color: rgba(0, 0, 0, 0.02);
+    }
+
+    /* ---------------------- Size ---------------------- */
+    .size-sm th,
+    .size-sm td {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.875rem;
+    }
+
+    .size-md th,
+    .size-md td {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+    .size-lg th,
+    .size-lg td {
+        padding: 1rem 1.5rem;
+        font-size: 1.0625rem;
+    }
+
+    /* ---------------------- Variant ---------------------- */
+    .variant-light th,
+    .variant-light td {
+        color: #212529;
+        background-color: transparent;
+    }
+
+    .variant-dark {
+        background-color: #212529;
+        color: #fff;
+    }
+
+    .variant-dark th,
+    .variant-dark td {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ---------------------- Table head styling ---------------------- */
+    .table thead th {
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: inherit;
+    }
+}

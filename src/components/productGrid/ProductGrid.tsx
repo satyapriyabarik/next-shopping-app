@@ -1,7 +1,9 @@
-import { Row, Col, Card } from "react-bootstrap";
 import { Product } from "@/types/Product";
 import Link from "next/link";
 import AddToCartButton from "../addToCart/AddToCartButton";
+import { Card } from "../common/Card/Card";
+import Rating from "../rating/Rating";
+import { Col, Row } from "../common/Grid/Grid";
 
 interface ProductGridProps {
     products: Product[];
@@ -20,17 +22,17 @@ export default function ProductGrid({ products }: ProductGridProps) {
                     sm={6}
                     md={4}
                     lg={3}
-                    xl={2}
+                    xl={3}
                     className="product-col mb-4"
                 >
                     <Card className="h-100 shadow-lg border-0 hover-zoom product-card">
                         <Link href={`/productDetails/${p.id}`}>
                             <Card.Img
                                 variant="top"
-                                src={p.image || "https://via.placeholder.com/300x300.png?text=Plant"}
+                                src={p.image}
                                 alt={p.name}
                                 className="p-2 rounded"
-                                style={{ height: "220px", objectFit: "cover" }}
+                                style={{ width: "100%", height: "220px", objectFit: "cover" }}
                             />
                         </Link>
 
@@ -40,9 +42,11 @@ export default function ProductGrid({ products }: ProductGridProps) {
                             <Card.Text className="fw-bold text-success fs-6 mb-2">
                                 ₹{p.price ?? "—"}
                             </Card.Text>
+                            <div style={{ paddingLeft: '30%' }}><Rating rating={p.reviews[0].rating} max={5} /></div>
                         </Card.Body>
 
                         <Card.Footer className="bg-white border-0 text-center">
+
                             <AddToCartButton product={p} />
                         </Card.Footer>
                     </Card>

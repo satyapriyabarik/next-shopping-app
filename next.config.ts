@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["encrypted-tbn0.gstatic.com", "images.unsplash.com", "encrypted-tbn3.gstatic.com", "treemart.com"],
   },
+
   async headers() {
     return [
       {

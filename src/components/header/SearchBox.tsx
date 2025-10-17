@@ -1,11 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Form, InputGroup, Button, ListGroup, Spinner } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 import { getProducts } from "@/lib/api";
 import { Product } from "@/types/Product";
-import Link from "next/link";
+import { Button } from "../common/Button/Button";
+import { Form } from "../common/Form/Form";
+import { ListGroup } from "../common/ListGroup/ListGroup";
+import { InputGroup } from "../common/InputGroup/InputGroup";
+import { Spinner } from "../common/Spinner/Spinner";
 
 interface SearchBoxProps {
     onSearch: (query: string, category: string) => void;
@@ -31,7 +34,7 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
 
         const fetchResults = async () => {
             try {
-                const allProducts = await getProducts(1, 50); // fetch first 50 items
+                const allProducts = await getProducts({ page: 1, limit: 50 }); // fetch first 50 items
                 let filtered = allProducts.filter((p: Product) =>
                     p.name.toLowerCase().includes(query.toLowerCase())
                 );
@@ -78,6 +81,7 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
                         style={{ maxWidth: "120px" }}
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
+                        aria-label="Search term"
                     >
                         <option>All</option>
                         <option>Flower</option>
@@ -93,7 +97,7 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
                         onFocus={() => query && results.length > 0 && setShowDropdown(true)}
                     />
 
-                    <Button type="submit" variant="success">
+                    <Button type="submit" variant="success" aria-label="Search">
                         <FaSearch />
                     </Button>
                 </InputGroup>
@@ -122,8 +126,9 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
                             <ListGroup.Item
                                 key={p.id}
                                 action
-                                as={Link}
+                                as={'Link'}
                                 href={`/productDetails/${p.id}`} // exact folder name
+                                style={{ color: 'green' }}
                             >
                                 {p.name} <span className="text-muted small">({p.category})</span>
                             </ListGroup.Item>

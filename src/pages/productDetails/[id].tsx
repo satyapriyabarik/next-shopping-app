@@ -2,11 +2,14 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import MainLayout from "@/components/layouts";
 import Image from "next/image";
-import { Spinner, Container, Row, Col, Badge } from "react-bootstrap";
 import AddToCartButton from "@/components/addToCart/AddToCartButton";
 import { Product } from "@/types/Product";
 import { getProductById } from "@/lib/api";
 import ProductBrief from "@/components/productBrief/ProductBrief";
+import { Spinner } from "@/components/common/Spinner/Spinner";
+import { Container } from "@/components/common/Container/Container";
+import { Col, Row } from "@/components/common/Grid/Grid";
+import { Badge } from "@/components/common/Badge/Badge";
 
 interface ProductDetailProps {
     initialProduct?: Product | null;

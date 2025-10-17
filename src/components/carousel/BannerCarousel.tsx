@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { Carousel } from "react-bootstrap";
 import { motion } from "framer-motion";
+import { Carousel } from "../common/Carousel/Carousel";
+import { BANNER_1_URL, BANNER_2_URL } from "@/constants/apiList";
 export default function BannerCarousel() {
     return (
         <Carousel fade className="mb-4 banner-carousel">
             <Carousel.Item>
                 <Image
                     className="d-block w-100"
-                    src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=30"
+                    src={BANNER_1_URL}
                     alt="Banner 1"
                     width={1600}
                     height={400}
@@ -29,7 +30,7 @@ export default function BannerCarousel() {
             <Carousel.Item>
                 <Image
                     className="d-block w-100"
-                    src="https://images.unsplash.com/photo-1555037015-1498966bcd7c?fm=jpg&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGxhbnR8ZW58MHx8MHx8fDA%3D&ixlib=rb-4.1.0&q=60&w=1600"
+                    src={BANNER_2_URL}
                     alt="Banner 2"
                     width={1600}
                     height={400}

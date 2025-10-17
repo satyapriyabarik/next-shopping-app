@@ -2,10 +2,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Button, Table, Spinner } from "react-bootstrap";
 import Image from "next/image";
 import MainLayout from "@/components/layouts/MainLayout";
 import { useCartStore } from "@/store/cartStore";
+import { Spinner } from "@/components/common/Spinner/Spinner";
+import { Container } from "@/components/common/Container/Container";
+import { Button } from "@/components/common/Button/Button";
+import { Col, Row } from "@/components/common/Grid/Grid";
+import { Table } from "@/components/common/Table/Table";
 
 export default function CheckoutPage() {
     const cart = useCartStore((state) => state.cart);
@@ -46,7 +50,8 @@ export default function CheckoutPage() {
     return (
         <MainLayout title="Checkout">
             <Container className="py-5">
-                <h2 className="mb-4 fw-bold text-success">Checkout</h2>
+                <h2 className="text-center fw-bold text-success mb-4">
+                    🌱 Checkout</h2>
 
                 <Table bordered hover responsive>
                     <thead>
@@ -74,7 +79,7 @@ export default function CheckoutPage() {
                                 <td>₹{(item.price ?? 0).toFixed(2)}</td>
                                 <td>
                                     <Button
-                                        variant="outline-secondary"
+                                        variant="secondary"
                                         size="sm"
                                         onClick={() => decrement(item.id)}
                                         disabled={item.quantity <= 1}
@@ -83,7 +88,7 @@ export default function CheckoutPage() {
                                     </Button>
                                     <span className="mx-2">{item.quantity}</span>
                                     <Button
-                                        variant="outline-secondary"
+                                        variant="secondary"
                                         size="sm"
                                         onClick={() => increment(item.id)}
                                     >
@@ -111,8 +116,9 @@ export default function CheckoutPage() {
                     </Col>
                     <Col md={6} className="text-end">
                         <Button
-                            variant="outline-danger"
-                            className="me-3"
+                            variant="danger"
+                            size="md"
+                            mr={"5px"}
                             onClick={() => {
                                 if (confirm("Are you sure you want to clear the cart?")) clearCart();
                             }}

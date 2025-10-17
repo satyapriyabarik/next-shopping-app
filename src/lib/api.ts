@@ -1,5 +1,5 @@
+import { BASE_URL } from "@/constants/apiList";
 
-const BASE_URL = "https://my-json-server.typicode.com/satyapriyabarik/nurseryData/initialPlants";
 
 export async function getProducts({
     page = 1,

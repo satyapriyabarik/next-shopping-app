@@ -2,11 +2,11 @@
 "use client";
 
 import React, { Suspense, lazy } from "react";
-import { Spinner } from "react-bootstrap";
 import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { Spinner } from "@/components/common/Spinner/Spinner";
 
 // 🧠 React Query client (for caching)
 const queryClient = new QueryClient();

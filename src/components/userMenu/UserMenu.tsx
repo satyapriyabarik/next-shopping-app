@@ -1,53 +1,63 @@
 "use client";
+
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { Dropdown } from "react-bootstrap";
 import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
-import toast, { Toaster } from "react-hot-toast";
-export default function UserMenu() {
+import { Dropdown } from "../common/Dropdown/Dropdown";
+import { ToastProvider, useToast } from "../common/Toast/Toast";
+
+function UserMenuInner() {
     const router = useRouter();
-
-
-
-    // if (!user) return null; // hide dropdown while redirecting
-    // const { username, fetchUser, setUsername } = useUserStore();
     const { username, initialized, fetchUser, logout } = useUserStore();
+    const { addToast } = useToast();
+
+    // ✅ Always run hooks (no early returns before hooks)
+    useEffect(() => {
+        if (!initialized) {
+            fetchUser();
+        }
+    }, [initialized, fetchUser]);
+
     const handleLogout = async () => {
-        await logout(); // clears store and calls /api/logout
-        toast.success("Successfully logged out! Redirecting to login...");
+        await logout();
+        addToast("Successfully logged out! Redirecting to login...", "success", 3000);
         setTimeout(() => {
             router.push("/login");
-        }, 2000); // redirect after toast
+        }, 2000);
     };
-    if (!initialized) return null;
 
-    useEffect(() => {
-        fetchUser();
-    }, [fetchUser, username]);
-    return (
-        <> <Toaster position="top-center" reverseOrder={false} />
-            {
-                username ? (
-                    <Dropdown align="end">
-                        <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
-                            Welcome, {username}
-                        </Dropdown.Toggle>
+    // ✅ UI rendering
+    if (!initialized) {
+        return <FaUser size={22} />;
+    }
 
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="/account">My Profile</Dropdown.Item>
-                            <Dropdown.Item href="/orders">My Orders</Dropdown.Item>
-                            <Dropdown.Divider />
-                            <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                ) : (
-                    <Link href="/login" className="text-white" title="Login">
-                        <FaUser size={22} />
-                    </Link>
-                )
-            }
-        </>
+    return username ? (
+        <Dropdown align="end">
+            <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
+                Welcome, {username}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+                <Dropdown.Item href="/profile" className="text-dark">My Profile</Dropdown.Item>
+                <Dropdown.Item href="/orders" className="text-dark">My Orders</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={handleLogout} className="text-dark">Logout</Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
+    ) : (
+        <Link href={`/login?redirect=${encodeURIComponent(window.location.pathname)}`} className="text-white" title="Login">
+            <FaUser size={22} />
+        </Link>
     );
 }
+
+// ✅ Wrap with ToastProvider
+export default function UserMenu() {
+    return (
+        <ToastProvider position="top-center">
+            <UserMenuInner />
+        </ToastProvider>
+    );
+}
+

@@ -1,0 +1,136 @@
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Toggle button */
+.toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    background-color: #ffffff;
+    color: #212529;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s ease-in-out;
+}
+
+/* Down arrow icon (caret) */
+.toggle::after {
+    content: "";
+    display: inline-block;
+    margin-left: 0.5em;
+    vertical-align: 0.25em;
+    border-top: 0.4em solid currentColor;
+    border-right: 0.4em solid transparent;
+    border-left: 0.4em solid transparent;
+}
+
+/* Hover/focus states */
+.toggle:hover,
+.toggle:focus {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+    color: #212529;
+}
+
+/* Variant: outline-light (for dark navbars) */
+.outline-light {
+    background-color: transparent;
+    color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+}
+
+.outline-light:hover,
+.outline-light:focus {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Menu styling */
+.menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    min-width: 10rem;
+    margin-top: 0.25rem;
+    padding: 0.25rem 0;
+    list-style: none;
+    /* removes list bullets ✅ */
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+    overflow: hidden;
+}
+
+/* Show dropdown */
+.show {
+    display: block;
+    animation: fadeIn 0.12s ease-out;
+}
+
+/* Align dropdown to the end */
+.end {
+    left: auto;
+    right: 0;
+}
+
+/* Dropdown items */
+.item {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 1rem;
+    clear: both;
+    color: #212529;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    transition: background-color 0.15s ease-in-out;
+}
+
+/* Hover/focus item */
+.item:hover,
+.item:focus {
+    background-color: #198754;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Active item */
+.item:active {
+    background-color: green;
+    color: #fff;
+}
+
+/* Divider line */
+.divider {
+    height: 1px;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
