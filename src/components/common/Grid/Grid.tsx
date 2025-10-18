@@ -1,26 +1,11 @@
 import React, { ReactNode, HTMLAttributes } from "react";
 import styles from "./Grid.module.css";
 
+// ---------------------- Container ----------------------
 interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
     children: ReactNode;
     fluid?: boolean;
     className?: string;
-}
-
-interface RowProps extends HTMLAttributes<HTMLDivElement> {
-    children: ReactNode;
-    className?: string;
-    gap?: number; // spacing between columns
-}
-
-interface ColProps extends HTMLAttributes<HTMLDivElement> {
-    children: ReactNode;
-    className?: string;
-    xs?: number; // 1-12
-    sm?: number;
-    md?: number;
-    lg?: number;
-    xl?: number;
 }
 
 export const Container: React.FC<ContainerProps> = ({
@@ -33,12 +18,36 @@ export const Container: React.FC<ContainerProps> = ({
         {children}
     </div>
 );
+Container.displayName = "Grid.Container";
+
+// ---------------------- Row ----------------------
+interface RowProps extends HTMLAttributes<HTMLDivElement> {
+    children: ReactNode;
+    className?: string;
+    gap?: number; // spacing between columns in rem
+}
 
 export const Row: React.FC<RowProps> = ({ children, className = "", gap = 1, ...props }) => (
-    <div className={`${styles.row} ${className}`}  {...props}>
+    <div
+        className={`${styles.row} ${className}`}
+        style={{ gap: `${gap}rem` }} // dynamic gap applied
+        {...props}
+    >
         {children}
     </div>
 );
+Row.displayName = "Grid.Row";
+
+// ---------------------- Column ----------------------
+interface ColProps extends HTMLAttributes<HTMLDivElement> {
+    children: ReactNode;
+    className?: string;
+    xs?: number; // 1-12
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+}
 
 export const Col: React.FC<ColProps> = ({ children, className = "", xs, sm, md, lg, xl, ...props }) => {
     const classes = [
@@ -57,3 +66,4 @@ export const Col: React.FC<ColProps> = ({ children, className = "", xs, sm, md, 
         </div>
     );
 };
+Col.displayName = "Grid.Col";

@@ -75,9 +75,9 @@ const LoginForm: React.FC<{ csrf: string | null }> = ({ csrf }) => {
                 setError(message);
                 addToast(message, "error", 3000, "top-center");
             }
-        } catch (err: any) {
+        } catch (err: Error | unknown) {
             removeToast(toastId);
-            const msg = "Network error: " + err.message;
+            const msg = "Network error: " + (err instanceof Error ? err.message : 'Unknown error');
             setError(msg);
             addToast(msg, "error", 3000, "top-center");
         } finally {

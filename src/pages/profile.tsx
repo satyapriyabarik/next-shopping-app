@@ -1,5 +1,6 @@
 import { Card } from '@/components/common/Card/Card';
 import MainLayout from '@/components/layouts';
+import Image from 'next/image';
 import React from 'react';
 
 const ProfilePage: React.FC = () => {
@@ -16,10 +17,11 @@ const ProfilePage: React.FC = () => {
                 🌱 Profile</h2>
             <Card className="p-4">
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
-                    <img
+                    <Image
                         src={user.avatar}
                         alt="User Avatar"
-                        style={{ width: 80, height: 80, borderRadius: '50%', marginRight: '1rem' }}
+                        style={{ borderRadius: '50%', marginRight: '1rem' }}
+                        height={80} width={80}
                     />
                     <div>
                         <h2 style={{ margin: 0 }}>{user.name}</h2>

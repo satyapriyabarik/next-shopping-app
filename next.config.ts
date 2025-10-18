@@ -31,6 +31,16 @@ const securityHeaders = [
   },
 ];
 
+// PWA configuration
+const withPWA = require("next-pwa")({
+  dest: "public", // folder where the service worker will be generated
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development", // disable in dev mode
+});
+
+// PWA configuration ends
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {

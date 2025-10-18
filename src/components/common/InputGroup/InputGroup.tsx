@@ -61,7 +61,7 @@ InputGroup.Text = ({ children, className = "", ...props }) => {
         </span>
     );
 };
-
+InputGroup.Text.displayName = "InputGroup.Text";
 // Prepend Addon (Wrapper before control)
 InputGroup.Prepend = ({ children, className = "", ...props }) => {
     return (
@@ -70,7 +70,7 @@ InputGroup.Prepend = ({ children, className = "", ...props }) => {
         </div>
     );
 };
-
+InputGroup.Prepend.displayName = "InputGroup.Prepend";
 // Append Addon (Wrapper after control)
 InputGroup.Append = ({ children, className = "", ...props }) => {
     return (
@@ -79,7 +79,7 @@ InputGroup.Append = ({ children, className = "", ...props }) => {
         </div>
     );
 };
-
+InputGroup.Append.displayName = "InputGroup.Append";
 // Button wrapper
 InputGroup.Button = ({ children, className = "", ...props }) => {
     return (
@@ -88,3 +88,4 @@ InputGroup.Button = ({ children, className = "", ...props }) => {
         </div>
     );
 };
+InputGroup.Button.displayName = "InputGroup.Button";

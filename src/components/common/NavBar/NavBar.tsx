@@ -38,6 +38,18 @@ interface NavLinkProps {
     active?: boolean;
 }
 
+// ---------------------- Type Guard ----------------------
+function isNavBarChild<P>(
+    child: React.ReactNode,
+    displayName: string
+): child is React.ReactElement<P> & { type: { displayName?: string } } {
+    return (
+        React.isValidElement(child) &&
+        typeof child.type === "function" &&
+        (child.type as { displayName?: string }).displayName === displayName
+    );
+}
+
 // ---------------------- NavBar ----------------------
 export const NavBar: React.FC<NavBarProps> & {
     Brand: React.FC<BrandProps>;
@@ -61,15 +73,15 @@ export const NavBar: React.FC<NavBarProps> & {
                     if (!React.isValidElement(child)) return child;
 
                     // Toggle
-                    if ((child.type as any).displayName === "NavBar.Toggle") {
-                        return React.cloneElement(child as React.ReactElement<ToggleProps>, {
+                    if (isNavBarChild<ToggleProps>(child, "NavBar.Toggle")) {
+                        return React.cloneElement(child, {
                             onClick: () => setExpanded((prev) => !prev),
                         });
                     }
 
                     // Collapse
-                    if ((child.type as any).displayName === "NavBar.Collapse") {
-                        return React.cloneElement(child as React.ReactElement<CollapseProps>, {
+                    if (isNavBarChild<CollapseProps>(child, "NavBar.Collapse")) {
+                        return React.cloneElement(child, {
                             show: expanded,
                         });
                     }
@@ -79,10 +91,14 @@ export const NavBar: React.FC<NavBarProps> & {
             </nav>
         );
     };
+NavBar.displayName = "NavBar";
 
 // ---------------------- Brand ----------------------
 const Brand: React.FC<BrandProps> = ({ href = "/", children }) => (
-    <Link href={href} className={`${styles.brand} d-flex align-items-center text-decoration-none`}>
+    <Link
+        href={href}
+        className={`${styles.brand} d-flex align-items-center text-decoration-none`}
+    >
         {children}
     </Link>
 );
@@ -133,3 +149,5 @@ NavBar.Brand = Brand;
 NavBar.Toggle = Toggle;
 NavBar.Collapse = Collapse;
 NavBar.Nav = Nav;
+
+export default NavBar;

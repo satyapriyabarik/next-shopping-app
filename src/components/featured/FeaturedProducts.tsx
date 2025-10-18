@@ -16,7 +16,7 @@ export default function FeaturedProducts({ products }: ProductGridProps) {
     return (
         <div className="featured-bg py-5">
             <Container>
-                <Row className="justify-content-center">
+                <Row className="justify-content-center" gap={0}>
                     {products.map((p) => (
                         <Col
                             key={p.id}
@@ -34,9 +34,8 @@ export default function FeaturedProducts({ products }: ProductGridProps) {
                                         src={p.image}
                                         alt={p.name}
                                         className="p-2 rounded-top"
-                                        style={{ objectFit: "cover", cursor: "pointer" }}
-                                        width={'100%'}
-                                        height={250}
+                                        style={{ cursor: "pointer" }}
+                                        fill
                                     />
                                 </Link>
 

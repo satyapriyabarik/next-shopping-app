@@ -204,3 +204,4 @@ ListGroup.Item = ({
     }
 
 };
+ListGroup.Item.displayName = "ListGroup.Item";

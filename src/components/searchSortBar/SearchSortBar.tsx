@@ -15,7 +15,7 @@ export default function SearchSortBar({
     setSortBy: (v: string) => void;
 }) {
     return (
-        <Row className="mb-4 justify-content-center">
+        <Row className="mb-4 justify-content-center" gap={0}>
             <Col md={4} className="mb-2">
                 <InputGroup>
                     <InputGroup.Text>🔍</InputGroup.Text>

@@ -1,10 +1,17 @@
-import React, { useState, ReactNode, HTMLAttributes, useEffect, useRef } from "react";
+import React, {
+    useState,
+    ReactNode,
+    HTMLAttributes,
+    useEffect,
+    useRef,
+    useCallback,
+} from "react";
 import styles from "./Carousel.module.css";
 
 interface CarouselProps extends HTMLAttributes<HTMLDivElement> {
     children: ReactNode[];
-    interval?: number; // autoplay interval in ms
-    fade?: boolean; // enable fade effect
+    interval?: number;
+    fade?: boolean;
 }
 
 interface CarouselItemProps extends HTMLAttributes<HTMLDivElement> {
@@ -23,8 +30,13 @@ export const Carousel: React.FC<CarouselProps> & {
     const length = React.Children.count(children);
     const timer = useRef<NodeJS.Timeout | null>(null);
 
-    const next = () => setActiveIndex((prev) => (prev + 1) % length);
-    const prev = () => setActiveIndex((prev) => (prev - 1 + length) % length);
+    const next = useCallback(() => {
+        setActiveIndex((prev) => (prev + 1) % length);
+    }, [length]);
+
+    const prev = useCallback(() => {
+        setActiveIndex((prev) => (prev - 1 + length) % length);
+    }, [length]);
 
     useEffect(() => {
         if (interval > 0) {
@@ -33,13 +45,11 @@ export const Carousel: React.FC<CarouselProps> & {
                 if (timer.current) clearInterval(timer.current);
             };
         }
-    }, [interval]);
+    }, [interval, next]);
 
     return (
         <div className={`${styles.carousel} ${className}`} {...props}>
-            <div
-                className={`${styles.carouselInner} ${fade ? styles.fade : ""}`}
-            >
+            <div className={`${styles.carouselInner} ${fade ? styles.fade : ""}`}>
                 {React.Children.map(children, (child, index) => (
                     <div
                         className={`${styles.carouselItem} ${index === activeIndex ? styles.active : ""
@@ -72,7 +82,8 @@ export const Carousel: React.FC<CarouselProps> & {
     );
 };
 
-// Carousel.Item
+Carousel.displayName = "Carousel"; // ✅ Add display name
+
 Carousel.Item = ({ children, className = "", ...props }: CarouselItemProps) => {
     return (
         <div className={`${styles.carouselItemContent} ${className}`} {...props}>
@@ -80,8 +91,8 @@ Carousel.Item = ({ children, className = "", ...props }: CarouselItemProps) => {
         </div>
     );
 };
+Carousel.Item.displayName = "Carousel.Item"; // ✅ Add display name
 
-// Carousel.Caption
 Carousel.Caption = ({ children, className = "", ...props }: CarouselCaptionProps) => {
     return (
         <div className={`${styles.carouselCaption} ${className}`} {...props}>
@@ -89,3 +100,4 @@ Carousel.Caption = ({ children, className = "", ...props }: CarouselCaptionProps
         </div>
     );
 };
+Carousel.Caption.displayName = "Carousel.Caption"; // ✅ Add display name

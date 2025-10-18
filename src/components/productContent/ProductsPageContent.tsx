@@ -131,30 +131,35 @@ export default function ProductsPageContent({
             </h2>
 
             {/* 🔍 Search + Sort */}
+
             <Row className="justify-content-center mb-4">
-                <Col xs={10} md={8} lg={6} className="d-flex gap-2">
-                    <Form.Control
-                        type="text"
-                        placeholder="Search products..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="shadow-sm"
-                        id="search-product"
-                    />
-                    <Form.Select
-                        value={sortOption}
-                        onChange={(e) => setSortOption(e.target.value)}
-                        className="shadow-sm" title="Sort Products"
-                        id="sort-product"
-                    >
-                        <option value="">Sort by</option>
-                        <option value="priceAsc">Price: Low to High</option>
-                        <option value="priceDesc">Price: High to Low</option>
-                        <option value="nameAsc">Name: A → Z</option>
-                        <option value="nameDesc">Name: Z → A</option>
-                    </Form.Select>
+                <Col xs={12} md={8} lg={6}>
+                    <div className="d-flex flex-column flex-sm-row gap-2">
+                        <Form.Control
+                            type="text"
+                            placeholder="Search products..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="shadow-sm flex-grow-1"
+                            id="search-product"
+                        />
+                        <Form.Select
+                            value={sortOption}
+                            onChange={(e) => setSortOption(e.target.value)}
+                            className="shadow-sm flex-shrink-0"
+                            title="Sort Products"
+                            id="sort-product"
+                        >
+                            <option value="">Sort by</option>
+                            <option value="priceAsc">Price: Low to High</option>
+                            <option value="priceDesc">Price: High to Low</option>
+                            <option value="nameAsc">Name: A → Z</option>
+                            <option value="nameDesc">Name: Z → A</option>
+                        </Form.Select>
+                    </div>
                 </Col>
             </Row>
+
 
             <ProductGrid products={products} />
 

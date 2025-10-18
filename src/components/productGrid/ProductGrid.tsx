@@ -14,7 +14,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
         return <p className="text-center text-muted">No products found.</p>;
 
     return (
-        <Row className="g-4 justify-content-center">
+        <Row className="g-4 justify-content-center" gap={0}>
             {products.map((p) => (
                 <Col
                     key={p.id}
@@ -32,7 +32,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
                                 src={p.image}
                                 alt={p.name}
                                 className="p-2 rounded"
-                                style={{ width: "100%", height: "220px", objectFit: "cover" }}
+                                fill
                             />
                         </Link>
 

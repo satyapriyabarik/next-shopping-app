@@ -33,9 +33,9 @@ export default function ProductBrief({ product }: { product: Product }) {
             </p>
             <p className="text-secondary">
                 <strong > Precautions and considerations</strong><br />
-                While "natural" can imply safety, it is critical to be cautious when using herbal supplements, as they are not regulated with the same strictness as pharmaceutical drugs.
+                While natural can imply safety, it is critical to be cautious when using herbal supplements, as they are not regulated with the same strictness as pharmaceutical drugs.
                 Regulation: In the U.S., the FDA does not approve herbal supplements for safety or efficacy before they are sold. Manufacturers are responsible for their own products, and it can take years for unsafe products to be removed from the market.
-                Drug interactions: Many herbs can interact with prescription medications, potentially altering their effectiveness or causing dangerous side effects. For example, St. John's wort can interfere with antidepressants and birth control pills.
+                Drug interactions: Many herbs can interact with prescription medications, potentially altering their effectiveness or causing dangerous side effects. For example, St. John&apos;s wort can interfere with antidepressants and birth control pills.
                 Contaminants: Herbal products can sometimes be contaminated with heavy metals, pesticides, or other toxins.
                 Risk groups: Pregnant or nursing women, children, and individuals with underlying health conditions (such as kidney disease) should exercise extra caution and consult a healthcare provider before using herbal supplements.
                 Professional guidance: Always speak with a healthcare professional before beginning any herbal treatment, especially if you are taking other medications or have a chronic condition. They can help assess potential risks and benefits based on your personal health needs.

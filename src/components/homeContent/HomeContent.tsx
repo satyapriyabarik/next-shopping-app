@@ -103,7 +103,7 @@ export default function HomeContent() {
                     </div>
                 }
             >
-                <Container fluid className="justify-content-center px-4">
+                <Container fluid className="justify-content-center" >
                     <h2 className="text-center fw-bold text-success mb-5">
                         🌱 Featured Products
                     </h2>

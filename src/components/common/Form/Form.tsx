@@ -38,7 +38,7 @@ Form.Group = ({ children, className = "", ...props }) => (
         {children}
     </div>
 );
-
+Form.Group.displayName = "Form.Group";
 // Form.Label
 interface FormLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
     children: ReactNode;
@@ -50,7 +50,7 @@ Form.Label = ({ children, htmlFor, className = "", ...props }) => (
         {children}
     </label>
 );
-
+Form.Label.displayName = "Form.Label";
 // Form.Input
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
     className?: string;
@@ -58,7 +58,7 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
 Form.Input = ({ className = "", ...props }) => (
     <input className={`${styles.input} ${className}`} {...props} />
 );
-
+Form.Input.displayName = "Form.Input";
 // Form.TextArea
 interface FormTextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     className?: string;
@@ -66,7 +66,7 @@ interface FormTextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> 
 Form.TextArea = ({ className = "", ...props }) => (
     <textarea className={`${styles.textarea} ${className}`} {...props} />
 );
-
+Form.TextArea.displayName = "Form.TextArea";
 // Form.Select
 interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     className?: string;
@@ -74,7 +74,7 @@ interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 Form.Select = ({ className = "", ...props }) => (
     <select className={`${styles.select} ${className}`} {...props} />
 );
-
+Form.Select.displayName = "Form.Select";
 // ---------------------
 // Form.Control: unified component
 type ControlPropsBase = { as?: "input" | "textarea" | "select"; className?: string };
@@ -95,3 +95,4 @@ Form.Control = ({ as = "input", className = "", ...props }: FormControlProps) =>
             return <input className={`${styles.input} ${className}`} {...(props as InputHTMLAttributes<HTMLInputElement>)} />;
     }
 };
+Form.Control.displayName = "Form.Control";

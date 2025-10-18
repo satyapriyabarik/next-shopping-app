@@ -40,3 +40,34 @@
   font-size: 1rem;
   margin-bottom: 0;
 }
+
+.cardImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  /* ensures consistent card image height */
+  overflow: hidden;
+  border-top-left-radius: var(--radius, 8px);
+  border-top-right-radius: var(--radius, 8px);
+}
+
+.cardImage {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cardImage:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .cardImageWrapper {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardImageWrapper {
+    height: 160px;
+  }
+}
