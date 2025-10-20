@@ -44,7 +44,7 @@ const withPWA = require("next-pwa")({
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["encrypted-tbn0.gstatic.com", "images.unsplash.com", "encrypted-tbn3.gstatic.com", "treemart.com"],
+    domains: ["encrypted-tbn0.gstatic.com", "media.licdn.com", "images.unsplash.com", "encrypted-tbn3.gstatic.com", "treemart.com"],
   },
 
   async headers() {

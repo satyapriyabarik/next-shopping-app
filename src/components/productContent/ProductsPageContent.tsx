@@ -9,6 +9,7 @@ import { Product } from "@/types/Product";
 import { Spinner } from "../common/Spinner/Spinner";
 import { Col, Row } from "../common/Grid/Grid";
 import { Form } from "../common/Form/Form";
+import { InputGroup } from "../common/InputGroup/InputGroup";
 
 const PAGE_SIZE = 6;
 
@@ -135,14 +136,17 @@ export default function ProductsPageContent({
             <Row className="justify-content-center mb-4">
                 <Col xs={12} md={8} lg={6}>
                     <div className="d-flex flex-column flex-sm-row gap-2">
-                        <Form.Control
-                            type="text"
-                            placeholder="Search products..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="shadow-sm flex-grow-1"
-                            id="search-product"
-                        />
+                        <InputGroup>
+                            <InputGroup.Text>🔍</InputGroup.Text>
+                            <Form.Control
+                                type="text"
+                                placeholder="Search products..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="shadow-sm flex-grow-1"
+                                id="search-product"
+                            />
+                        </InputGroup>
                         <Form.Select
                             value={sortOption}
                             onChange={(e) => setSortOption(e.target.value)}
@@ -159,9 +163,13 @@ export default function ProductsPageContent({
                     </div>
                 </Col>
             </Row>
+            <ProductGrid
+                products={products}
+                isLoading={isFetchingNextPage} // 👈 show skeleton when fetching more
+            />
 
 
-            <ProductGrid products={products} />
+            {/* <ProductGrid products={products} /> */}
 
             {!category && (
                 <div ref={loadMoreRef} className="text-center py-4">

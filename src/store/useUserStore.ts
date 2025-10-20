@@ -1,58 +1,19 @@
 
-// import { create } from "zustand";
-// import { persist } from "zustand/middleware";
-
-// interface UserState {
-//     username: string | null;
-//     initialized: boolean;
-//     setUsername: (name: string | null) => void;
-//     fetchUser: () => Promise<void>;
-//     logout: () => Promise<void>;
-// }
-
-// export const useUserStore = create<UserState>()(
-//     persist(
-//         (set, get) => ({
-//             username: null,
-//             initialized: false,
-
-//             setUsername: (name) => set({ username: name }),
-
-//             fetchUser: async () => {
-//                 if (get().initialized) return; // only once
-//                 try {
-//                     const res = await fetch("/api/account", { credentials: "include" });
-//                     if (!res.ok) throw new Error("Unauthorized");
-//                     const data = await res.json();
-//                     if (data.authenticated) {
-//                         set({ username: data.username, initialized: true });
-//                     } else {
-//                         set({ username: null, initialized: true });
-//                     }
-//                 } catch {
-//                     set({ username: null, initialized: true });
-//                 }
-//             },
-
-//             logout: async () => {
-//                 await fetch("/api/logout", { method: "POST", credentials: "include" });
-//                 set({ username: null, initialized: true });
-//             },
-//         }),
-//         {
-//             name: "user-storage",
-//             partialize: (state) => ({ username: state.username }),
-//         }
-//     )
-// );
-
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+interface User {
+    username: string;
+    email: string;
+    avatar: string;
+    base_location: string;
+    role: string;
+}
+
 interface UserState {
-    username: string | null;
+    user: User | null;
     initialized: boolean;
-    setUsername: (name: string | null) => void;
+    setUser: (user: User | null) => void;
     fetchUser: () => Promise<void>;
     logout: () => Promise<void>;
 }
@@ -60,10 +21,10 @@ interface UserState {
 export const useUserStore = create<UserState>()(
     persist(
         (set, get) => ({
-            username: null,
+            user: null,
             initialized: false,
 
-            setUsername: (name) => set({ username: name }),
+            setUser: (user) => set({ user }),
 
             fetchUser: async () => {
                 // Only run once per load
@@ -73,22 +34,27 @@ export const useUserStore = create<UserState>()(
                     const res = await fetch("/api/account", { credentials: "include" });
                     const data = await res.json();
 
-                    if (res.ok && data.authenticated && data.username) {
-                        set({ username: data.username, initialized: true });
+                    if (res.ok && data.authenticated && data.user) {
+                        // ✅ Authenticated session confirmed
+                        set({ user: data.user, initialized: true });
                     } else {
-                        // Don't override username if already logged in locally
-                        if (!get().username) {
-                            set({ username: null, initialized: true });
-                        } else {
+                        // ⚠️ Keep existing user if session check failed temporarily (network, etc.)
+                        const existingUser = get().user;
+                        if (existingUser) {
                             set({ initialized: true });
+                        } else {
+                            set({ user: null, initialized: true });
                         }
                     }
-                } catch {
-                    // Keep existing username even if /api/account fails temporarily
-                    if (!get().username) {
-                        set({ username: null, initialized: true });
-                    } else {
+                } catch (err) {
+                    console.error("Error fetching user:", err);
+
+                    // ✅ Don't clear persisted user on network failure
+                    const existingUser = get().user;
+                    if (existingUser) {
                         set({ initialized: true });
+                    } else {
+                        set({ user: null, initialized: true });
                     }
                 }
             },
@@ -97,14 +63,13 @@ export const useUserStore = create<UserState>()(
                 try {
                     await fetch("/api/logout", { method: "POST", credentials: "include" });
                 } finally {
-                    set({ username: null, initialized: true });
+                    set({ user: null, initialized: true });
                 }
             },
         }),
         {
             name: "user-storage",
-            // Persist only username, not initialized flag
-            partialize: (state) => ({ username: state.username }),
+            partialize: (state) => ({ user: state.user }),
         }
     )
 );

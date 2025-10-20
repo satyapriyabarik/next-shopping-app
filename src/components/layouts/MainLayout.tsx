@@ -13,6 +13,7 @@ interface MainLayoutProps {
 export default function MainLayout({ title, children }: MainLayoutProps) {
     return (
         <>
+
             <Head>
                 <title>{title}</title>
                 <meta name="theme-color" content="#4CAF50" />
@@ -20,9 +21,9 @@ export default function MainLayout({ title, children }: MainLayoutProps) {
                 <link rel="icon" href="/icons/plant.ico" />
                 <link rel="apple-touch-icon" href="/icons/plant.ico" />
             </Head>
-
+            <Header />
             <div className={styles.container}>
-                <Header />
+
                 <main className={styles.main}>{children}</main>
                 <Footer />
             </div>

@@ -1,0 +1,123 @@
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+    border-radius: 8px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -400px 0;
+    }
+
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+.skeletonImg {
+    width: 350px;
+    height: 350px;
+    border-radius: 16px;
+    margin: 0 auto;
+}
+
+.skeletonTitle {
+    width: 60%;
+    height: 28px;
+    margin-bottom: 12px;
+}
+
+.skeletonBadge {
+    width: 120px;
+    height: 22px;
+    margin-bottom: 10px;
+}
+
+.skeletonPrice {
+    width: 100px;
+    height: 28px;
+    margin-bottom: 15px;
+}
+
+.skeletonBtn {
+    width: 160px;
+    height: 42px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.skeletonLine {
+    height: 14px;
+    margin-bottom: 6px;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.w75 {
+    width: 75%;
+}
+
+
+/* --- Product Grid Skeleton --- */
+.skeletonCard {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 12px;
+    width: 100%;
+    height: 100%;
+}
+
+.skeletonImgSm {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.skeletonTitleSm {
+    width: 70%;
+    height: 20px;
+    margin: 8px auto;
+}
+
+.skeletonTextSm {
+    width: 50%;
+    height: 14px;
+    margin: 6px auto;
+}
+
+.skeletonPriceSm {
+    width: 40%;
+    height: 18px;
+    margin: 10px auto;
+}
+
+.skeletonBtnSm {
+    width: 60%;
+    height: 34px;
+    border-radius: 8px;
+    margin: 10px auto 0;
+}
+
+/* --- Fade-in animation for loaded content --- */
+.fadeIn {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

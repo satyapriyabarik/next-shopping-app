@@ -91,7 +91,7 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
 
                     <Form.Control
                         type="text"
-                        placeholder="Search products..."
+                        placeholder="Search..."
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         onFocus={() => query && results.length > 0 && setShowDropdown(true)}

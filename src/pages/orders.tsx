@@ -5,8 +5,8 @@ import React from 'react';
 const OrderPage: React.FC = () => {
     // Example user data
     const orders = [
-        { id: 'ORD12345', date: '2024-06-01', total: 99.99, status: 'Delivered' },
-        { id: 'ORD12346', date: '2024-06-10', total: 49.49, status: 'Processing' },
+        { id: 'ORD12345', date: '2025-06-01', total: 599.99, status: 'Delivered' },
+        { id: 'ORD12346', date: '2025-10-31', total: 749.49, status: 'Processing' },
     ];
 
     return (
@@ -31,7 +31,7 @@ const OrderPage: React.FC = () => {
                                 <tr key={order.id}>
                                     <td>{order.id}</td>
                                     <td>{order.date}</td>
-                                    <td>${order.total.toFixed(2)}</td>
+                                    <td>₹{order.total.toFixed(2)}</td>
                                     <td>{order.status}</td>
                                 </tr>
                             ))}

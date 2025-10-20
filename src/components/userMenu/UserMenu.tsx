@@ -10,7 +10,7 @@ import { ToastProvider, useToast } from "../common/Toast/Toast";
 
 function UserMenuInner() {
     const router = useRouter();
-    const { username, initialized, fetchUser, logout } = useUserStore();
+    const { user, initialized, fetchUser, logout } = useUserStore();
     const { addToast } = useToast();
 
     // ✅ Always run hooks (no early returns before hooks)
@@ -33,10 +33,10 @@ function UserMenuInner() {
         return <FaUser size={22} />;
     }
 
-    return username ? (
+    return user ? (
         <Dropdown align="end">
             <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
-                Welcome, {username}
+                Welcome, {user.username}
             </Dropdown.Toggle>
             <Dropdown.Menu>
                 <Dropdown.Item href="/profile" className="text-dark">My Profile</Dropdown.Item>

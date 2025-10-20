@@ -134,7 +134,7 @@ export default function HomeContent() {
                             </div>
                         }
                     >
-                        <FeaturedProducts products={filteredProducts} />
+                        <FeaturedProducts products={filteredProducts} isLoading={isFetchingNextPage} />
                     </Suspense>
                 )}
             </Container>

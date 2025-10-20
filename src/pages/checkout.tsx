@@ -39,7 +39,7 @@ export default function CheckoutPage() {
 
     if (cart.length === 0) {
         return (
-            <MainLayout title="Checkout">
+            <MainLayout title="Shopping Cart">
                 <Container className="py-5 text-center">
                     <h3>Your cart is empty 🛒</h3>
                 </Container>
@@ -48,7 +48,7 @@ export default function CheckoutPage() {
     }
 
     return (
-        <MainLayout title="Checkout">
+        <MainLayout title="Shopping Cart">
             <Container className="py-5">
                 <h2 className="text-center fw-bold text-success mb-4">
                     🌱 Checkout</h2>
@@ -111,7 +111,7 @@ export default function CheckoutPage() {
                 </Table>
 
                 <Row className="mt-4 align-items-center">
-                    <Col md={6}>
+                    <Col md={5}>
                         <h4>Total: ₹{getTotal().toFixed(2)}</h4>
                     </Col>
                     <Col md={6} className="text-end">

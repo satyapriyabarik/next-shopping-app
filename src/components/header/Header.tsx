@@ -11,8 +11,8 @@ import UserMenu from "../userMenu/UserMenu";
 import { NavBar } from "../common/NavBar/NavBar";
 import { Badge } from "../common/Badge/Badge"; // Custom CSS module badge
 import { LOGO_URL } from "@/constants/apiList";
+import SearchBox from "./SearchBox";
 
-const SearchBox = lazy(() => import("./SearchBox"));
 
 export default function Header() {
     const pathname = usePathname();
@@ -23,7 +23,7 @@ export default function Header() {
     const isActive = (path: string) => pathname === path;
 
     return (
-        <header className={"sticky-top shadow-sm"}>
+        <header className={"sticky-top shadow-sm"} style={{ position: "fixed", width: "100%", zIndex: 1000, top: 0 }}>
             <NavBar bg="dark" variant="dark" expand="lg" className="shadow-sm py-2 px-4">
                 {/* Brand: Single Link */}
                 <NavBar.Brand href="/">

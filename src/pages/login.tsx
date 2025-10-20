@@ -27,7 +27,7 @@ const LoginForm: React.FC<{ csrf: string | null }> = ({ csrf }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const { setUsername } = useUserStore();
+    const { setUser } = useUserStore();
     const { addToast, removeToast } = useToast(); // ✅ safe here
 
     const [loading, setLoading] = useState(false);
@@ -63,7 +63,7 @@ const LoginForm: React.FC<{ csrf: string | null }> = ({ csrf }) => {
 
             if (res.status === 200) {
                 const respData = await res.json();
-                setUsername(respData.username);
+                setUser(respData);
                 addToast("Login successful!", "success", 3000);
                 const redirectTo = searchParams.get("redirect") || "/";
                 setTimeout(() => {
