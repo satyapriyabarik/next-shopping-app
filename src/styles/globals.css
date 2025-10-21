@@ -1,6 +1,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --line-height-base: 1.5;
+
+  --color-bg: #ffffff;
+  --color-ink: #111111;
+  --color-primary: #0b74de;
+  --color-focus: #ffbf47;
+
+  --focus-ring-size: 3px;
+  --focus-offset: 4px;
 }
 
 
@@ -8,6 +26,24 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --space-0: 0px;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --line-height-base: 1.5;
+
+    --color-bg: #ffffff;
+    --color-ink: #111111;
+    --color-primary: #0b74de;
+    --color-focus: #ffbf47;
+
+    --focus-ring-size: 3px;
+    --focus-offset: 4px;
   }
 }
 

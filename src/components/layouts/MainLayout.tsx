@@ -1,4 +1,3 @@
-
 import styles from "./MainLayout.module.css";
 import Head from "next/head";
 import Header from "../header";
@@ -24,7 +23,7 @@ export default function MainLayout({ title, children }: MainLayoutProps) {
             <Header />
             <div className={styles.container}>
 
-                <main className={styles.main}>{children}</main>
+                <main className={styles.main} id="main-content" tabIndex={-1}>{children}</main>
                 <Footer />
             </div>
         </>
