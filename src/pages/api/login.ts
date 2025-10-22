@@ -18,12 +18,12 @@ const MOCK_USERS: MockUser[] = [
     },
     {
         id: "u002",
-        username: "Priya",
-        email: "priya@example.com",
-        password: "hello@123",
-        role: "customer",
-        base_location: "Hyderabad, India",
-        avatar: "https://media.licdn.com/dms/image/v2/D5603AQGFds5_OPnKAw/profile-displayphoto-shrink_400_400/B56ZWEvJ5wGQAo-/0/1741688709508?e=1762387200&v=beta&t=GzimUPBmv6f3HlhkgE6LI9fsK9KcDX5jEyWNg5j0VXg",
+        username: "Nagarro",
+        email: "demoUser@nagaroo.com",
+        password: "nagarro@123",
+        role: "admin",
+        base_location: "Gurugram, India",
+        avatar: "https://media.licdn.com/dms/image/v2/D4D0BAQHu-RIXbSi0fw/company-logo_200_200/company-logo_200_200/0/1688362226392/nagarro_logo?e=1762992000&v=beta&t=1O-rvxDHdH5lboqhUlAGPeYUNayh9z7UE22hDis64vg",
 
     },
     {
