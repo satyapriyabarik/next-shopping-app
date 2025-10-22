@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import { Dropdown } from "../common/Dropdown/Dropdown";
 import { ToastProvider, useToast } from "../common/Toast/Toast";
+import { LOGOUT_SUCCESS } from "@/constants/successMessages";
 
 function UserMenuInner() {
     const router = useRouter();
@@ -22,7 +23,7 @@ function UserMenuInner() {
 
     const handleLogout = async () => {
         await logout();
-        addToast("Successfully logged out! Redirecting to login...", "success", 3000);
+        addToast(LOGOUT_SUCCESS, "success", 3000);
         setTimeout(() => {
             router.push("/login");
         }, 2000);

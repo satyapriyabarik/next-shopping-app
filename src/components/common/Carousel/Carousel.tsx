@@ -61,10 +61,10 @@ export const Carousel: React.FC<CarouselProps> & {
             </div>
 
             {/* Controls */}
-            <button className={`${styles.control} ${styles.prev}`} onClick={prev}>
+            <button className={`${styles.control} ${styles.prev}`} onClick={prev} aria-label="Previous Slide">
                 &#10094;
             </button>
-            <button className={`${styles.control} ${styles.next}`} onClick={next}>
+            <button className={`${styles.control} ${styles.next}`} onClick={next} aria-label="Next Slide">
                 &#10095;
             </button>
 
@@ -75,6 +75,7 @@ export const Carousel: React.FC<CarouselProps> & {
                         className={`${styles.indicator} ${index === activeIndex ? styles.active : ""
                             }`}
                         onClick={() => setActiveIndex(index)}
+                        aria-label={`Go to slide ${index + 1}`}
                     />
                 ))}
             </div>

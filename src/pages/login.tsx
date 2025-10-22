@@ -14,6 +14,7 @@ import { Form } from "@/components/common/Form/Form";
 import { Button } from "@/components/common/Button/Button";
 import { Spinner } from "@/components/common/Spinner/Spinner";
 import { ToastProvider, useToast } from "@/components/common/Toast/Toast";
+import { LOGIN_SUCCESS } from "@/constants/successMessages";
 // ------------------ Zod schema ------------------
 const loginSchema = z.object({
     username: z.string().min(1, "Username is required"),
@@ -64,7 +65,7 @@ const LoginForm: React.FC<{ csrf: string | null }> = ({ csrf }) => {
             if (res.status === 200) {
                 const respData = await res.json();
                 setUser(respData);
-                addToast("Login successful!", "success", 3000);
+                addToast(LOGIN_SUCCESS, "success", 3000);
                 const redirectTo = searchParams.get("redirect") || "/";
                 setTimeout(() => {
                     if (redirectTo) router.push(redirectTo);

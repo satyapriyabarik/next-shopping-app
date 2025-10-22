@@ -127,20 +127,35 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
 // --------------------------------------------------
 // Item
 // --------------------------------------------------
-interface DropdownItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-    href?: string;
+interface DropdownItemProps extends React.HTMLAttributes<HTMLElement> {
+    href?: string; // optional link
+    onClick?: () => void; // optional action
+    children: ReactNode;
+    className?: string;
 }
 
 const DropdownItem: React.FC<DropdownItemProps> = ({
     href,
+    onClick,
     children,
     className = "",
     ...props
 }) => (
     <li>
-        <a href={href} className={`${styles.item} ${className}`} {...props}>
-            {children}
-        </a>
+        {href ? (
+            <a href={href} className={`${styles.item} ${className}`} {...props}>
+                {children}
+            </a>
+        ) : (
+            <button
+                type="button"
+                onClick={onClick}
+                className={`${styles.item} ${className}`}
+                {...props}
+            >
+                {children}
+            </button>
+        )}
     </li>
 );
 

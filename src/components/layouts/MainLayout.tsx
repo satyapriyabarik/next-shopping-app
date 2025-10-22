@@ -14,7 +14,11 @@ export default function MainLayout({ title, children }: MainLayoutProps) {
         <>
 
             <Head>
-                <title>{title}</title>
+                <title>{title} : Shop Plants Online | GreenKart</title>
+                <meta
+                    name="description"
+                    content="Shop healthy indoor and outdoor plants like roses, ferns, and succulents delivered to your doorstep."
+                />
                 <meta name="theme-color" content="#4CAF50" />
                 <link rel="manifest" href="/manifest.json" />
                 <link rel="icon" href="/icons/plant.ico" />
