@@ -1,40 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+A modern eCommerce Progressive Web App (PWA) built with Next.js, demonstrating server-side rendering, client-side rendering, and static pages. The app allows users to browse products, view details, add items to the cart, and checkout securely with authentication.
 
-## Getting Started
+Live Demo: https://next-shopping-app-8ezc.vercel.app/
 
-First, run the development server:
+Git Repository: https://github.com/satyapriyabarik/next-shopping-app.git
 
-```bash
+Table of Contents
+
+Features
+
+Pages
+
+Authentication
+
+Tech Stack
+
+Installation
+
+Running the App
+
+PWA Support
+
+Performance
+
+License
+
+Features
+
+Display Featured Products on the Home page (Client-side Rendering)
+
+Products Page with Server-side Rendering (SSR)
+
+About Page built as a Static Page (SSG)
+
+Add products to cart and manage checkout
+
+Product Details view
+
+User Authentication for secure login
+
+Progressive Web App (PWA) enabled
+
+Skip to content link for accessibility
+
+Web Vitals metrics displayed for performance monitoring
+
+Pages
+Page	Rendering Type	Description
+Home	Client-side (CSR)	Shows featured products
+Products	Server-side (SSR)	Lists all products
+About	Static (SSG)	Provides info about the store
+Cart	CSR	View and manage items in cart
+Checkout	CSR	Complete purchase securely
+Details	CSR	Detailed view of each product
+Auth	CSR	Login & authentication
+Authentication
+
+Secure login mechanism implemented
+
+cookie based authentication
+
+Protects sensitive pages like checkout
+
+
+Tech Stack
+
+Frontend: React.js, Next.js 13 (App Router / Pages Router)
+
+Styling: CSS Modules / Following Bootstrap CSS 
+
+Data Fetching: SSR, CSR, SSG for respective pages
+
+Deployment: Vercel
+
+PWA: Service workers & offline support
+
+Other: Web Vitals for monitoring page performance
+
+
+Installation
+# Clone the repository
+git clone https://github.com/satyapriyabarik/next-shopping-app.git
+cd next-shopping-app
+
+# Install dependencies
+npm install
+# or
+yarn install
+
+
+Running the App
+# Run in development mode
 npm run dev
 # or
 yarn dev
+
+# Build for production
+npm run build
+npm start
 # or
-pnpm dev
-# or
-bun dev
-```
+yarn build
+yarn start
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Visit http://localhost:3000 to see the app in action.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+PWA Support
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Offline mode enabled
 
-## Learn More
+Add to Home Screen functionality
 
-To learn more about Next.js, take a look at the following resources:
+Fast loading with caching
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+Performance
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Web Vitals metrics tracked (LCP, FCP, CLS, TTFB, INP)
 
-## Deploy on Vercel
+Skip to content link improves accessibility
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Optimized SSR and CSR pages for best performance
