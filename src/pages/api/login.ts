@@ -105,7 +105,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         );
 
         // ✅ Success response
-        return res.status(200).json({ ok: true, username, email: matchedUser.email, avatar: matchedUser.avatar, role: matchedUser.role });
+        return res.status(200).json({ ok: true, username, email: matchedUser.email, avatar: matchedUser.avatar, role: matchedUser.role, base_location: matchedUser.base_location });
     } catch (err) {
         console.error("Login API error:", err);
         const status = 500;
