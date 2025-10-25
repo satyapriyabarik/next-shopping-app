@@ -1,15 +1,15 @@
 export interface Product {
     id: number;
     name: string;
-    category: string;
     price: number;
     image: string;
+    category: string;
     description: string;
     care: string;
-    reviews: [{
+    reviews: {
         userName: string;
         title: string;
         comment: string;
         rating: number;
-    }];
+    }[]; // ✅ normal array, can be empty or multiple
 }

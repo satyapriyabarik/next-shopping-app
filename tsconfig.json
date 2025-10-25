@@ -16,6 +16,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "types": [
+      "jest",
+      "node"
+    ],
     "incremental": true,
     "baseUrl": "src",
     "paths": {
@@ -30,7 +34,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/common/Grid/index.js"
+    "src/components/common/Grid/index.js",
+    "test"
   ],
   "exclude": [
     "node_modules"

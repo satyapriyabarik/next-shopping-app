@@ -18,6 +18,7 @@ export default class MyDocument extends Document {
     connect-src 'self' https://my-json-server.typicode.com ws:;
   "
           /> */}
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
           <Main />
