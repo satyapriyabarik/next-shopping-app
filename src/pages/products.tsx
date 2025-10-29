@@ -20,7 +20,7 @@ const ProductsPageContent = dynamic(
 
 interface ProductsPageProps {
     dehydratedState: DehydratedState;
-    category?: string; // 👈 now uses optional instead of null
+    category?: string; // optional instead of null
     search?: string;
     sort?: string;
 }
@@ -31,7 +31,7 @@ export async function getServerSideProps(context: {
     const queryClient = new QueryClient();
     const { category, search, sort } = context.query;
 
-    // ✅ Replace undefined → null before sending to client (for Next.js serialization)
+    //Replace undefined → null before sending to client (for Next.js serialization)
     const safeCategory = category ?? null;
     const safeSearch = search ?? null;
     const safeSort = sort ?? null;
@@ -64,7 +64,6 @@ export async function getServerSideProps(context: {
     return {
         props: {
             dehydratedState: dehydrate(queryClient),
-            // ✅ still serializable
             category: safeCategory,
             search: safeSearch,
             sort: safeSort,

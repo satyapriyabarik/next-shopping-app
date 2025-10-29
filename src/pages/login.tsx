@@ -68,7 +68,8 @@ const LoginForm: React.FC<{ csrf: string | null }> = ({ csrf }) => {
                 addToast(LOGIN_SUCCESS, "success", 3000);
                 const redirectTo = searchParams.get("redirect") || "/";
                 setTimeout(() => {
-                    if (redirectTo) router.push(redirectTo);
+                    if (redirectTo && redirectTo === "/login") router.push("/");
+                    else if (redirectTo && redirectTo !== "/login") router.push(redirectTo);
                     else router.back();
                 }, 2000);
             } else {

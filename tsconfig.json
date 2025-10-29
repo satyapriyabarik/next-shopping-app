@@ -35,7 +35,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/common/Grid/index.js",
-    "test"
+    "test",
+    "src/middleware.ts"
   ],
   "exclude": [
     "node_modules"

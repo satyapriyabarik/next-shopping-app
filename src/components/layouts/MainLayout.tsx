@@ -13,8 +13,7 @@ export default function MainLayout({ title, children }: MainLayoutProps) {
     return (
         <>
 
-            <Head>
-                <title>{title} : Shop Plants Online | GreenKart</title>
+            <Head>{`${title} | : Shop Plants Online | GreenKart`}
                 <meta
                     name="description"
                     content="Shop healthy indoor and outdoor plants like roses, ferns, and succulents delivered to your doorstep."
