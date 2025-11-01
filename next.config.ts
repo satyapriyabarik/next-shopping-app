@@ -5,11 +5,12 @@ const isDev = process.env.NODE_ENV === "development";
 const csp = [
   "default-src 'self'",
   `script-src 'self' ${isDev ? "'unsafe-eval' 'unsafe-inline'" : "'unsafe-inline'"} https:`,
-  "style-src 'self' 'unsafe-inline' 'nonce-*' https:",
+  "style-src 'self' 'unsafe-inline' https:",
   "img-src 'self' data: https: blob:",
   "font-src 'self' https:",
   [
     "connect-src 'self'",
+    "https://next-shopping-app-8ezc.vercel.app",
     "https://api.example.com",
     "https://my-json-server.typicode.com",
     "https://encrypted-tbn0.gstatic.com",
