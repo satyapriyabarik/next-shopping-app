@@ -26,12 +26,27 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      "encrypted-tbn0.gstatic.com",
-      "media.licdn.com",
-      "images.unsplash.com",
-      "encrypted-tbn3.gstatic.com",
-      "treemart.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "encrypted-tbn0.gstatic.com",
+      },
+      {
+        protocol: "https",
+        hostname: "media.licdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "encrypted-tbn3.gstatic.com",
+      },
+      {
+        protocol: "https",
+        hostname: "treemart.com",
+      },
     ],
   },
   async headers() {
@@ -49,7 +64,9 @@ const withPWA = require("next-pwa")({
   dest: "public",
   register: true,
   skipWaiting: true,
-  disable: isDev,
+  disable: process.env.NODE_ENV === "development",
+  buildExcludes: [/middleware-manifest\.json$/, /_buildManifest\.js$/, /_ssgManifest\.js$/, /dynamic-css-manifest\.json$/],
 });
+
 
 export default withPWA(nextConfig);
