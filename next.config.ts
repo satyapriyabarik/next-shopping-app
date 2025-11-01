@@ -14,15 +14,16 @@ const csp = [
     "https://api.example.com",
     "https://my-json-server.typicode.com",
     "https://encrypted-tbn0.gstatic.com",
+    "https://encrypted-tbn3.gstatic.com",
     "https://media.licdn.com",
     "https://images.unsplash.com",
-    "https://encrypted-tbn3.gstatic.com",
     "https://treemart.com",
   ].join(" "),
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
 ].join("; ");
+
 
 const securityHeaders = [
   {
