@@ -2,29 +2,43 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
 
+const csp = [
+  "default-src 'self'",
+  `script-src 'self' ${isDev ? "'unsafe-eval' 'unsafe-inline'" : "'unsafe-inline'"} https:`,
+  "style-src 'self' 'unsafe-inline' 'nonce-*' https:",
+  "img-src 'self' data: https: blob:",
+  "font-src 'self' https:",
+  [
+    "connect-src 'self'",
+    "https://api.example.com",
+    "https://my-json-server.typicode.com",
+    "https://encrypted-tbn0.gstatic.com",
+    "https://media.licdn.com",
+    "https://images.unsplash.com",
+    "https://encrypted-tbn3.gstatic.com",
+    "https://treemart.com",
+  ].join(" "),
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join("; ");
+
 const securityHeaders = [
   {
     key: "Content-Security-Policy",
-    value: `
-      default-src 'self';
-      script-src 'self' ${isDev ? "'unsafe-eval' 'unsafe-inline'" : "'unsafe-inline'"} https:;
-      style-src 'self' 'unsafe-inline' https:;
-      img-src 'self' data: https:;
-      font-src 'self' https:;
-      connect-src 'self' https://api.example.com https://my-json-server.typicode.com;
-      frame-ancestors 'none';
-      base-uri 'self';
-      form-action 'self';
-    `.replace(/\s{2,}/g, " ").trim(),
+    value: csp,
   },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
 ];
 
+
+
 // Base Next.js config
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+
   images: {
     remotePatterns: [
       {
@@ -54,6 +68,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
   async headers() {
     return [
       {
@@ -64,14 +79,18 @@ const nextConfig: NextConfig = {
   },
 };
 
-// Wrap with PWA
+// ✅ Wrap with PWA support
 const withPWA = require("next-pwa")({
   dest: "public",
   register: true,
   skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
-  buildExcludes: [/middleware-manifest\.json$/, /_buildManifest\.js$/, /_ssgManifest\.js$/, /dynamic-css-manifest\.json$/],
+  disable: isDev,
+  buildExcludes: [
+    /middleware-manifest\.json$/,
+    /_buildManifest\.js$/,
+    /_ssgManifest\.js$/,
+    /dynamic-css-manifest\.json$/,
+  ],
 });
-
 
 export default withPWA(nextConfig);
