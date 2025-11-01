@@ -4,21 +4,28 @@ const isDev = process.env.NODE_ENV === "development";
 
 const csp = [
   "default-src 'self'",
+  // ✅ Script sources (allow inline/eval in dev, https scripts in prod)
   `script-src 'self' ${isDev ? "'unsafe-eval' 'unsafe-inline'" : "'unsafe-inline'"} https:`,
+  // ✅ Allow inline + CDN styles
   "style-src 'self' 'unsafe-inline' https:",
-  "img-src 'self' data: https: blob:",
+  // ✅ Allow images from data URLs, blobs, and external CDNs
+  "img-src 'self' data: blob: https://*",
+  // ✅ Allow fonts
   "font-src 'self' https:",
+  // ✅ This is where your issue is — Workbox uses fetch() which hits connect-src
   [
     "connect-src 'self'",
     "https://next-shopping-app-8ezc.vercel.app",
     "https://api.example.com",
     "https://my-json-server.typicode.com",
     "https://encrypted-tbn0.gstatic.com",
+    "https://encrypted-tbn1.gstatic.com",
+    "https://encrypted-tbn2.gstatic.com",
     "https://encrypted-tbn3.gstatic.com",
     "https://media.licdn.com",
     "https://images.unsplash.com",
-    "https://treemart.com",
   ].join(" "),
+  // ✅ Security extras
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
