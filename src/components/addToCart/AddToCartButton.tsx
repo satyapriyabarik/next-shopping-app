@@ -4,8 +4,8 @@
 import { useCartStore } from "@/store/cartStore";
 import { Product } from "@/types/Product";
 import { FaCartPlus } from "react-icons/fa";
-import { Button } from "../common/Button/Button";
 import { flyToCart } from "@/utils/flyToCart";
+import { Button } from "@greenkart/storybook-ui";
 
 interface AddToCartButtonProps {
     product: Product;

@@ -5,12 +5,8 @@ import Image from "next/image";
 import AddToCartButton from "@/components/addToCart/AddToCartButton";
 import { Product } from "@/types/Product";
 import { getProductById } from "@/lib/api";
-import { Spinner } from "@/components/common/Spinner/Spinner";
-import { Container } from "@/components/common/Container/Container";
-import { Col, Row } from "@/components/common/Grid/Grid";
-import { Badge } from "@/components/common/Badge/Badge";
-import Rating from "@/components/rating/Rating";
 import styles from "@/styles/Skeleton.module.css"; // ✅ Import skeleton styles
+import { Badge, Col, Container, Rating, Row, Spinner } from "@greenkart/storybook-ui";
 
 interface ProductDetailProps {
     initialProduct?: Product | null;

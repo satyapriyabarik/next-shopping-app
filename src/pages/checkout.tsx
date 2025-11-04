@@ -5,11 +5,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import MainLayout from "@/components/layouts/MainLayout";
 import { useCartStore } from "@/store/cartStore";
-import { Spinner } from "@/components/common/Spinner/Spinner";
-import { Container } from "@/components/common/Container/Container";
-import { Button } from "@/components/common/Button/Button";
-import { Col, Row } from "@/components/common/Grid/Grid";
-import { Table } from "@/components/common/Table/Table";
+import { Button, Col, Container, Row, Spinner, Table } from "@greenkart/storybook-ui";
 
 export default function CheckoutPage() {
     const cart = useCartStore((state) => state.cart);

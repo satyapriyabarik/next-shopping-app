@@ -1,10 +1,8 @@
 "use client";
 import { Product } from "@/types/Product";
 import Link from "next/link";
-import { Card } from "../common/Card/Card";
-import { Container } from "../common/Container/Container";
-import { Col, Row } from "../common/Grid/Grid";
 import styles from "@/styles/Skeleton.module.css";
+import { Card, Col, Container, Row } from "@greenkart/storybook-ui";
 
 interface ProductGridProps {
     products: Product[];

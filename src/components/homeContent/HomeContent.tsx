@@ -4,10 +4,8 @@ import { Product } from "@/types/Product";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import BackToTop from "../backToTop/BackToTop";
 import FeaturedProducts from "../featured/FeaturedProducts";
-import { Spinner } from "../common/Spinner/Spinner";
-import { Container } from "../common/Container/Container";
-import { Alert } from "../common/Alert/Alert";
 import { BASE_URL } from "@/constants/apiList";
+import { Alert, Container, Spinner } from "@greenkart/storybook-ui";
 
 // 🔹 Lazy components (named chunks)
 const BannerCarousel = lazy(() =>
@@ -16,9 +14,7 @@ const BannerCarousel = lazy(() =>
     )
 );
 const SearchSortBar = lazy(() =>
-    import(
-    /* webpackChunkName: "search-sort-bar" */ "@/components/searchSortBar/SearchSortBar"
-    )
+    import("@greenkart/storybook-ui").then((module) => ({ default: module.SearchSortBar }))
 );
 
 

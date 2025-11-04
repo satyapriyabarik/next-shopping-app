@@ -4,11 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import { getProducts } from "@/lib/api";
 import { Product } from "@/types/Product";
-import { Button } from "../common/Button/Button";
-import { Form } from "../common/Form/Form";
-import { ListGroup } from "../common/ListGroup/ListGroup";
-import { InputGroup } from "../common/InputGroup/InputGroup";
-import { Spinner } from "../common/Spinner/Spinner";
+import { Button, Form, InputGroup, ListGroup, Spinner } from "@greenkart/storybook-ui";
 
 interface SearchBoxProps {
     onSearch: (query: string, category: string) => void;
