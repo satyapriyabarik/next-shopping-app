@@ -6,7 +6,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import { Spinner } from "@/components/common/Spinner/Spinner";
+import { Spinner } from "@greenkart/storybook-ui";
 
 // 🧠 React Query client (for caching)
 const queryClient = new QueryClient();

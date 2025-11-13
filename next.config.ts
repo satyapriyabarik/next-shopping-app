@@ -2,36 +2,51 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
 
+// ✅ CSP directives flattened and trimmed
+const csp = [
+  "default-src 'self'",
+  `script-src 'self' ${isDev ? "'unsafe-eval' 'unsafe-inline'" : "'unsafe-inline'"} https:`,
+  "style-src 'self' 'unsafe-inline' https:",
+  "img-src 'self' data: blob: https: https://encrypted-tbn0.gstatic.com https://encrypted-tbn1.gstatic.com https://encrypted-tbn2.gstatic.com https://encrypted-tbn3.gstatic.com https://images.unsplash.com https://media.licdn.com",
+  "font-src 'self' https:",
+  "connect-src 'self' https://next-shopping-app-8ezc.vercel.app https://api.example.com https://my-json-server.typicode.com https://encrypted-tbn0.gstatic.com https://encrypted-tbn1.gstatic.com https://encrypted-tbn2.gstatic.com https://encrypted-tbn3.gstatic.com https://images.unsplash.com https://media.licdn.com",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join("; ");
+
 const securityHeaders = [
   {
     key: "Content-Security-Policy",
-    value: `
-      default-src 'self';
-      script-src 'self' ${isDev ? "'unsafe-eval' 'unsafe-inline'" : "'unsafe-inline'"} https:;
-      style-src 'self' 'unsafe-inline' https:;
-      img-src 'self' data: https:;
-      font-src 'self' https:;
-      connect-src 'self' https://api.example.com https://my-json-server.typicode.com;
-      frame-ancestors 'none';
-      base-uri 'self';
-      form-action 'self';
-    `.replace(/\s{2,}/g, " ").trim(),
+    // ✅ one-liner with no line breaks
+    value: csp.replace(/\n/g, "").replace(/\s{2,}/g, " "),
   },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
 ];
 
-// Base Next.js config
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: isDev,
+  buildExcludes: [
+    /middleware-manifest\.json$/,
+    /_buildManifest\.js$/,
+    /_ssgManifest\.js$/,
+    /dynamic-css-manifest\.json$/,
+  ],
+});
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      "encrypted-tbn0.gstatic.com",
-      "media.licdn.com",
-      "images.unsplash.com",
-      "encrypted-tbn3.gstatic.com",
-      "treemart.com",
+    remotePatterns: [
+      
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "media.licdn.com" },
+      {protocol:"https", hostname:"raw.githubusercontent.com"}
     ],
   },
   async headers() {
@@ -43,13 +58,5 @@ const nextConfig: NextConfig = {
     ];
   },
 };
-
-// Wrap with PWA
-const withPWA = require("next-pwa")({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-  disable: isDev,
-});
 
 export default withPWA(nextConfig);

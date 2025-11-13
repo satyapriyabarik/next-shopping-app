@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Carousel } from "../common/Carousel/Carousel";
 import { BANNER_1_URL, BANNER_2_URL } from "@/constants/apiList";
+import { Carousel } from "@greenkart/storybook-ui";
 export default function BannerCarousel() {
     return (
         <Carousel fade className="mb-4 banner-carousel">

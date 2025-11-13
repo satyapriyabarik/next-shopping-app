@@ -1,6 +1,6 @@
-import { Card } from '@/components/common/Card/Card';
 import MainLayout from '@/components/layouts';
 import { useUserStore } from '@/store/useUserStore';
+import { Card } from '@greenkart/storybook-ui';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
 

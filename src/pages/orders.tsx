@@ -1,5 +1,5 @@
-import { Card } from '@/components/common/Card/Card';
 import MainLayout from '@/components/layouts';
+import { Card } from '@greenkart/storybook-ui';
 import React from 'react';
 
 const OrderPage: React.FC = () => {

@@ -1,31 +1,104 @@
-
 "use client";
 
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { useCartStore } from "@/store/cartStore";
 import UserMenu from "../userMenu/UserMenu";
-import { NavBar } from "../common/NavBar/NavBar";
-import { Badge } from "../common/Badge/Badge"; // Custom CSS module badge
-import { LOGO_URL } from "@/constants/apiList";
-import SearchBox from "./SearchBox";
+import { BASE_URL, LOGO_URL } from "@/constants/apiList";
+import { Badge, NavBar, SearchBox } from "@greenkart/storybook-ui";
+import { Product } from "@/types/Product";
 
+// Match SearchBox’s expected product type
+interface SearchProduct {
+    id: string;
+    name: string;
+    category: string;
+}
+
+/** 🔍 Fetch search results from JSON placeholder dataset */
+const fetchProducts = async (query: string, category: string): Promise<SearchProduct[]> => {
+    try {
+        const res = await fetch(BASE_URL);
+        if (!res.ok) throw new Error("Failed to fetch data");
+
+        const all: Product[] = await res.json();
+
+        // Filter by query
+        let filtered = all.filter((p) =>
+            p.name.toLowerCase().includes(query.toLowerCase())
+        );
+
+        // Apply category filter (if not "All")
+        if (category !== "All") {
+            filtered = filtered.filter((p) => p.category === category);
+        }
+
+        // Simulate delay for UX
+        await new Promise((r) => setTimeout(r, 300));
+
+        // Map & normalize types (convert id to string)
+        return filtered.slice(0, 10).map((p) => ({
+            id: String(p.id),
+            name: p.name,
+            category: p.category,
+        }));
+    } catch (err) {
+        console.error("Error fetching products:", err);
+        return [];
+    }
+};
 
 export default function Header() {
     const pathname = usePathname();
+    const [categories, setCategories] = useState<string[]>(["All"]);
+
     const cartCount = useCartStore((state) =>
         state.cart.reduce((sum, item) => sum + item.quantity, 0)
     );
 
     const isActive = (path: string) => pathname === path;
 
+    // 🧠 Load unique categories dynamically from API
+    useEffect(() => {
+        const loadCategories = async () => {
+            try {
+                const res = await fetch(BASE_URL);
+                const data: Product[] = await res.json();
+
+                const uniqueCategories = Array.from(
+                    new Set(data.map((item) => item.category))
+                ) as string[];
+
+                setCategories(["All", ...uniqueCategories]);
+            } catch (err) {
+                console.error("Error loading categories:", err);
+                setCategories(["All"]);
+            }
+        };
+
+        loadCategories();
+    }, []);
+
+    // Triggered during typing
+    const handleFetchResults = async (query: string, category: string) => {
+        return await fetchProducts(query, category);
+    };
+
+    // Triggered on explicit search
+    const handleSearch = (query: string, category: string) => {
+        console.log("🔍 Search submitted:", { query, category });
+    };
+
     return (
-        <header className={"sticky-top shadow-sm"} style={{ position: "fixed", width: "100%", zIndex: 1000, top: 0 }}>
+        <header
+            className="sticky-top shadow-sm"
+            style={{ position: "fixed", width: "100%", zIndex: 1000, top: 0 }}
+        >
             <NavBar bg="dark" variant="dark" expand="lg" className="shadow-sm py-2 px-4">
-                {/* Brand: Single Link */}
+                {/* 🪴 Brand / Logo */}
                 <NavBar.Brand href="/">
                     <Image
                         src={LOGO_URL}
@@ -37,12 +110,11 @@ export default function Header() {
                     <span className="fs-4 fw-bold text-white">GreenKart</span>
                 </NavBar.Brand>
 
-                {/* Mobile toggle */}
+                {/* 📱 Mobile Toggle */}
                 <NavBar.Toggle ariaControls="main-nav" />
 
-                {/* Collapsible navigation */}
+                {/* 🌿 Main Nav */}
                 <NavBar.Collapse id="main-nav">
-                    {/* Left navigation links */}
                     <NavBar.Nav>
                         <NavBar.Nav.Link href="/" active={isActive("/")}>
                             Home
@@ -55,19 +127,26 @@ export default function Header() {
                         </NavBar.Nav.Link>
                     </NavBar.Nav>
 
-                    {/* Lazy-loaded search box */}
+                    {/* 🔍 Dynamic SearchBox */}
                     <Suspense fallback={<div className="text-white px-2">Loading search...</div>}>
                         <div className="flex-grow-1 me-2 d-flex justify-content-start px-4">
-                            <SearchBox onSearch={(q, cat) => console.log("Search", q, cat)} />
+                            <SearchBox
+                                categories={categories}
+                                onSearch={handleSearch}
+                                onFetchResults={handleFetchResults}
+                            />
                         </div>
                     </Suspense>
                 </NavBar.Collapse>
 
-                {/* Right-side user menu & cart */}
+                {/* 🛒 Cart & User Menu */}
                 <div className="d-flex align-items-center gap-3">
                     <UserMenu />
-
-                    <Link href="/checkout" className="text-white position-relative" title="Shopping Cart">
+                    <Link
+                        href="/checkout"
+                        className="text-white position-relative"
+                        title="Shopping Cart"
+                    >
                         <FaShoppingCart size={22} />
                         {cartCount > 0 && (
                             <Badge

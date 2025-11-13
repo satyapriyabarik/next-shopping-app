@@ -5,9 +5,8 @@ import Link from "next/link";
 import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
-import { Dropdown } from "../common/Dropdown/Dropdown";
-import { ToastProvider, useToast } from "../common/Toast/Toast";
 import { LOGOUT_SUCCESS } from "@/constants/successMessages";
+import { Dropdown, ToastProvider, useToast } from "@greenkart/storybook-ui";
 
 function UserMenuInner() {
     const router = useRouter();
