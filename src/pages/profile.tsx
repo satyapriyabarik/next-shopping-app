@@ -5,12 +5,7 @@ import Image from 'next/image';
 import React, { useEffect } from 'react';
 
 const ProfilePage: React.FC = () => {
-    // Example user data
-    // const user = {
-    //     name: 'Satya',
-    //     email: 'satyapriya.barik@nagarro.com',
-    //     avatar: 'https://media.licdn.com/dms/image/v2/D5603AQGFds5_OPnKAw/profile-displayphoto-shrink_400_400/B56ZWEvJ5wGQAo-/0/1741688709508?e=1762387200&v=beta&t=GzimUPBmv6f3HlhkgE6LI9fsK9KcDX5jEyWNg5j0VXg',
-    // };
+    
     const { user, initialized, fetchUser } = useUserStore();
     useEffect(() => {
         if (!initialized) fetchUser();

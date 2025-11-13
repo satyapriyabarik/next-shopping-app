@@ -1,4 +1,3 @@
-"use client";
 import { Product } from "@/types/Product";
 import Link from "next/link";
 import styles from "@/styles/Skeleton.module.css";

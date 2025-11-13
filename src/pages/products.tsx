@@ -1,11 +1,119 @@
 
 
+// import { Suspense } from "react";
+// import {
+//     QueryClient,
+//     dehydrate,
+//     HydrationBoundary,
+//     DehydratedState,
+//     QueryClientProvider,
+// } from "@tanstack/react-query";
+// import dynamic from "next/dynamic";
+// import MainLayout from "@/components/layouts";
+// import BackToTop from "@/components/backToTop/BackToTop";
+// import { getProducts, getProductsByCategory } from "@/lib/api";
+// import { Product } from "@/types/Product";
+
+// const ProductsPageContent = dynamic(
+//     () => import("@/components/productContent/ProductsPageContent"),
+//     { ssr: false }
+// );
+// const queryClient = new QueryClient();
+// interface ProductsPageProps {
+//     dehydratedState: DehydratedState;
+//     category?: string; // optional instead of null
+//     search?: string;
+//     sort?: string;
+// }
+
+// export async function getServerSideProps(context: {
+//     query: { category?: string; search?: string; sort?: string };
+// }) {
+//     const queryClient = new QueryClient();
+//     const { category, search, sort } = context.query;
+
+//     //Replace undefined → null before sending to client (for Next.js serialization)
+//     const safeCategory = category ?? null;
+//     const safeSearch = search ?? null;
+//     const safeSort = sort ?? null;
+
+//     if (safeCategory) {
+//         await queryClient.prefetchQuery({
+//             queryKey: ["products", { category: safeCategory, search: safeSearch, sort: safeSort }],
+//             queryFn: () =>
+//                 getProductsByCategory(safeCategory, {
+//                     search: safeSearch ?? undefined,
+//                     sort: safeSort ?? undefined,
+//                 }),
+//         });
+//     } else {
+//         await queryClient.prefetchInfiniteQuery({
+//             queryKey: ["products", { category: "all", search: safeSearch, sort: safeSort }],
+//             queryFn: ({ pageParam = 1 }) =>
+//                 getProducts({
+//                     page: pageParam,
+//                     limit: 6,
+//                     search: safeSearch ?? undefined,
+//                     sort: safeSort ?? undefined,
+//                 }),
+//             initialPageParam: 1,
+//             getNextPageParam: (lastPage: Product[], allPages: Product[]) =>
+//                 lastPage.length === 6 ? allPages.length + 1 : undefined,
+//         });
+//     }
+
+//     return {
+//         props: {
+//             dehydratedState: dehydrate(queryClient),
+//             category: safeCategory,
+//             search: safeSearch,
+//             sort: safeSort,
+//         },
+//     };
+// }
+
+// export default function ProductsPage({
+//     dehydratedState,
+//     category,
+//     search,
+//     sort,
+// }: ProductsPageProps) {
+//     // ✅ convert back null → undefined before passing to components
+//     const normalizedCategory = category ?? undefined;
+//     const normalizedSearch = search ?? undefined;
+//     const normalizedSort = sort ?? undefined;
+
+//     return (
+//          <QueryClientProvider client={queryClient}>
+//         <HydrationBoundary state={dehydratedState}>
+//             <MainLayout title={normalizedCategory ? `${normalizedCategory} Products` : "Products"}>
+//                 <Suspense
+//                     fallback={
+//                         <div className="text-center py-5">
+//                             <div className="spinner-border text-success" role="status" />
+//                             <p className="mt-2">Loading products...</p>
+//                         </div>
+//                     }
+//                 >
+//                     <ProductsPageContent
+//                         category={normalizedCategory}
+//                         search={normalizedSearch}
+//                         sort={normalizedSort}
+//                     />
+//                 </Suspense>
+//             </MainLayout>
+//             <BackToTop />
+//             </HydrationBoundary>
+//             </QueryClientProvider>
+//     );
+// }
 import { Suspense } from "react";
 import {
     QueryClient,
     dehydrate,
     HydrationBoundary,
     DehydratedState,
+    QueryClientProvider,
 } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import MainLayout from "@/components/layouts";
@@ -20,7 +128,7 @@ const ProductsPageContent = dynamic(
 
 interface ProductsPageProps {
     dehydratedState: DehydratedState;
-    category?: string; // optional instead of null
+    category?: string;
     search?: string;
     sort?: string;
 }
@@ -31,7 +139,6 @@ export async function getServerSideProps(context: {
     const queryClient = new QueryClient();
     const { category, search, sort } = context.query;
 
-    //Replace undefined → null before sending to client (for Next.js serialization)
     const safeCategory = category ?? null;
     const safeSearch = search ?? null;
     const safeSort = sort ?? null;
@@ -77,30 +184,40 @@ export default function ProductsPage({
     search,
     sort,
 }: ProductsPageProps) {
-    // ✅ convert back null → undefined before passing to components
+    // ❗ Create QueryClient INSIDE the component so hydration works
+    const queryClient = new QueryClient();
+
     const normalizedCategory = category ?? undefined;
     const normalizedSearch = search ?? undefined;
     const normalizedSort = sort ?? undefined;
 
     return (
-        <HydrationBoundary state={dehydratedState}>
-            <MainLayout title={normalizedCategory ? `${normalizedCategory} Products` : "Products"}>
-                <Suspense
-                    fallback={
-                        <div className="text-center py-5">
-                            <div className="spinner-border text-success" role="status" />
-                            <p className="mt-2">Loading products...</p>
-                        </div>
+        <QueryClientProvider client={queryClient}>
+            <HydrationBoundary state={dehydratedState}>
+                <MainLayout
+                    title={
+                        normalizedCategory
+                            ? `${normalizedCategory} Products`
+                            : "Products"
                     }
                 >
-                    <ProductsPageContent
-                        category={normalizedCategory}
-                        search={normalizedSearch}
-                        sort={normalizedSort}
-                    />
-                </Suspense>
-            </MainLayout>
-            <BackToTop />
-        </HydrationBoundary>
+                    <Suspense
+                        fallback={
+                            <div className="text-center py-5">
+                                <div className="spinner-border text-success" role="status" />
+                                <p className="mt-2">Loading products...</p>
+                            </div>
+                        }
+                    >
+                        <ProductsPageContent
+                            category={normalizedCategory}
+                            search={normalizedSearch}
+                            sort={normalizedSort}
+                        />
+                    </Suspense>
+                </MainLayout>
+                <BackToTop />
+            </HydrationBoundary>
+        </QueryClientProvider>
     );
 }

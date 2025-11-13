@@ -14,7 +14,7 @@ const MOCK_USERS: MockUser[] = [
         password: "india@25",
         role: "admin",
         base_location: "Bangalore, India",
-        avatar: "https://media.licdn.com/dms/image/v2/D5603AQGFds5_OPnKAw/profile-displayphoto-shrink_400_400/B56ZWEvJ5wGQAo-/0/1741688709508?e=1762387200&v=beta&t=GzimUPBmv6f3HlhkgE6LI9fsK9KcDX5jEyWNg5j0VXg",
+        avatar: "https://media.licdn.com/dms/image/v2/D5603AQGFds5_OPnKAw/profile-displayphoto-shrink_200_200/B56ZWEvJ5wGQAg-/0/1741688709508?e=2147483647&v=beta&t=1vKJ8Mt8l9YTLBXQ_84amkd3-x9WeqxFyIvw5SS-H_w",
     },
     {
         id: "u002",

@@ -1,4 +1,3 @@
-// utils/flyToCart.ts
 export function flyToCart(imgEl: HTMLImageElement, cartEl: HTMLElement) {
     const imgRect = imgEl.getBoundingClientRect();
     const cartRect = cartEl.getBoundingClientRect();

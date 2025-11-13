@@ -3,16 +3,20 @@ import { motion } from "framer-motion";
 import { BANNER_1_URL, BANNER_2_URL } from "@/constants/apiList";
 import { Carousel } from "@greenkart/storybook-ui";
 export default function BannerCarousel() {
+    const banners = [
+        { src: BANNER_1_URL },
+        {src:BANNER_2_URL}
+    ]
     return (
         <Carousel fade className="mb-4 banner-carousel">
             <Carousel.Item>
                 <Image
                     className="d-block w-100"
-                    src={BANNER_1_URL}
+                    src={banners[0].src}
                     alt="Banner 1"
                     width={1600}
                     height={400}
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", width:"1600px", height:"400px" }}
                     priority
                 />
                 <Carousel.Caption className="middle-caption">
@@ -28,15 +32,17 @@ export default function BannerCarousel() {
             </Carousel.Item>
 
             <Carousel.Item>
-                <Image
-                    className="d-block w-100"
-                    src={BANNER_2_URL}
-                    alt="Banner 2"
-                    width={1600}
-                    height={400}
-                    style={{ objectFit: "cover" }}
-                    priority
-                />
+                {banners.slice(1).map(b => (
+                    <Image
+                        className="d-block w-100"
+                        key={b.src}
+                        src={b.src}
+                        alt="Banner 2"
+                        width={1600}
+                        height={400}
+                        style={{ objectFit: "cover", width: "1600px", height: "400px" }}
+                        loading="lazy"
+                    />))}
                 <Carousel.Caption className="middle-caption">
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}

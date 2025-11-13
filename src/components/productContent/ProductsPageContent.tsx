@@ -1,4 +1,3 @@
-"use client";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { getProducts, getProductsByCategory } from "@/lib/api";

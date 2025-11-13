@@ -1,5 +1,3 @@
-"use client";
-
 import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -133,6 +131,7 @@ export default function Header() {
                                 categories={categories}
                                 onSearch={handleSearch}
                                 onFetchResults={handleFetchResults}
+                                aria-label="Search"
                             />
                         </div>
                     </Suspense>
