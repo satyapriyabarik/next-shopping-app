@@ -61,7 +61,6 @@ export default function Header() {
 
     const isActive = (path: string) => pathname === path;
 
-    // 🧠 Load unique categories dynamically from API
     useEffect(() => {
         const loadCategories = async () => {
             try {

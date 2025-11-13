@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import { getProducts, getProductsByCategory } from "@/lib/api";
 import { Product } from "@/types/Product";
 import { Col, Form, InputGroup, ProductGrid, Row, Spinner } from "@greenkart/storybook-ui";
+import AddToCartButton from "../addToCart/AddToCartButton";
 
 const PAGE_SIZE = 6;
 
@@ -160,6 +161,9 @@ export default function ProductsPageContent({
             <ProductGrid
                 products={products}
                 isLoading={isFetchingNextPage} // 👈 show skeleton when fetching more
+                renderAddToCart={
+                    (product) => (<AddToCartButton product={product} />)
+                }
             />
 
 
