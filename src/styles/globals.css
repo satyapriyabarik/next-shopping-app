@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -115,6 +117,11 @@ a {
   border-top: 1px solid #cfe3d8;
 }
 
+p.extranav a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
 /* Force 5 columns per row on xl screens */
 @media (min-width: 1200px) {
   .product-col {
@@ -154,6 +161,8 @@ a {
   transform: translateY(-6px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
+
+
 
 @media (prefers-color-scheme: dark) {
   html {

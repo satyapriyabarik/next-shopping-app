@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import WebVitalsOverlay from "../webVitalsOverlay/WebVitalsOverlay";
+import Link from "next/link";
 
 export default function Footer() {
     const [showWebVitals, setShowWebVitals] = useState(false);
@@ -14,6 +15,9 @@ export default function Footer() {
                 <div className="container">
                     <p style={{ margin: 0, fontStyle: "italic" }}>
                         🌱 “Plant a seed today, watch it grow tomorrow.” 🌱
+                    </p>
+                    <p className="extranav">
+                        <Link href="/portfolio">💼 Portfolio</Link> | <Link href="https://github.com/satyapriyabarik" target="_blank">🧑‍💻 GitHub Profile</Link> | <Link href="https://www.linkedin.com/in/satyapriya-barik-33594166/" target="_blank">🔗 LinkedIn</Link>
                     </p>
                     <small>
                         © {new Date().getFullYear()} GreenKart App

@@ -37,7 +37,7 @@
     "src/components/common/Grid/index.js",
     "test",
     "src/middleware.ts"
-  ],
+, "postcss.config.mjs"  ],
   "exclude": [
     "node_modules"
   ]

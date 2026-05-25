@@ -25,7 +25,7 @@ const csp = [
   "default-src 'self'",
   `script-src 'self' ${isDev ? "'unsafe-eval' 'unsafe-inline'" : "'unsafe-inline'"} https:`,
   "style-src 'self' 'unsafe-inline' https:",
-  "img-src 'self' data: blob: https: https://encrypted-tbn0.gstatic.com https://encrypted-tbn1.gstatic.com https://encrypted-tbn2.gstatic.com https://encrypted-tbn3.gstatic.com https://images.unsplash.com https://media.licdn.com",
+  "img-src 'self' data: blob: https: https://encrypted-tbn0.gstatic.com https://encrypted-tbn1.gstatic.com https://encrypted-tbn2.gstatic.com https://encrypted-tbn3.gstatic.com https://images.unsplash.com https://media.licdn.com ",
   "font-src 'self' https:",
   "connect-src 'self' https://next-shopping-app-8ezc.vercel.app https://api.example.com https://my-json-server.typicode.com https://images.unsplash.com https://media.licdn.com",
   "frame-ancestors 'none'",
