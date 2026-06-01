@@ -127,6 +127,12 @@ const PortfolioPage = () => {
             weburl: "https://engageiq-dashboard.vercel.app/"
         },
         {
+            title: "Storybook UI Component Library",
+            text: "Storybook UI Component Library project is about the collection of reusable UI components, showcasing expertise in building scalable and user-friendly web applications using React.js and modern frontend technologies. It focused on component documentation, testing, and seamless integration with existing systems to enhance development efficiency and code quality.",
+            image: SCREENSHOT_URL + "https://ng-storybook-rho.vercel.app/?path=/docs/atoms-alert--docs",
+            weburl: "https://ng-storybook-rho.vercel.app/?path=/docs/atoms-alert--docs"
+        },
+        {
             title: "Wiki Search Engine",
             text: "Global Search Engine project is about the search engine for global information, showcasing expertise in building scalable and user-friendly web applications using React.js and modern frontend technologies. It is based on Wikipedia API and focused on performance optimization, and seamless user experience to drive online search and information retrieval. Speech Synthesis and Speech Recognition features are also implemented to enhance the user experience.",
             image: SCREENSHOT_URL + "https://satya-global-search-engine.vercel.app/",
@@ -157,46 +163,59 @@ const PortfolioPage = () => {
             label: "About Me",
             icon: "👤",
             content: (
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                    {descriptions.map((desc, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{
-                                duration: 0.5,
-                                delay: index * 0.1,
-                            }}
-                            viewport={{ once: true }}
-                            whileHover={{
-                                y: -8,
-                                transition: { duration: 0.2 },
-                            }}
-                            className="group relative overflow-hidden rounded-2xl bg-white p-3 shadow-md hover:shadow-2xl border border-gray-100"
-                        >
-                            {/* Top Gradient Line */}
-                            <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
+                <><div className="text-center mb-10">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+                        About Me
+                    </h2>
 
-                            {/* Icon */}
-                            <div className="w-14 h-14 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                                {desc.icon}
-                            </div>
+                    <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
+                        Frontend Engineer with 14+ years of experience building
+                        scalable, accessible, and high-performance web applications
+                        using React, Next.js, TypeScript, GraphQL, and modern
+                        frontend architecture.
+                    </p>
+                </div>
+                    <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        {descriptions.map((desc, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    duration: 0.5,
+                                    delay: index * 0.1,
+                                }}
+                                viewport={{ once: true }}
+                                whileHover={{
+                                    y: -8,
+                                    transition: { duration: 0.2 },
+                                }}
+                                className="group relative overflow-hidden rounded-2xl bg-white p-3 shadow-md hover:shadow-2xl border border-gray-100"
+                            >
+                                {/* Top Gradient Line */}
+                                <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
 
-                            {/* Title */}
-                            <h3 className="text-xl font-bold text-gray-800 mb-3">
-                                {desc.title}
-                            </h3>
+                                {/* Icon */}
+                                <div className="w-14 h-14 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                                    {desc.icon}
+                                </div>
 
-                            {/* Description */}
-                            <p className="text-gray-600 leading-relaxed">
-                                {desc.text}
-                            </p>
+                                {/* Title */}
+                                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                                    {desc.title}
+                                </h3>
 
-                            {/* Decorative Blur */}
-                            <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-indigo-100 rounded-full blur-3xl opacity-0 group-hover:opacity-50 transition-opacity" />
-                        </motion.div>
-                    ))}
-                </section>
+                                {/* Description */}
+                                <p className="text-gray-600 leading-relaxed">
+                                    {desc.text}
+                                </p>
+
+                                {/* Decorative Blur */}
+                                <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-indigo-100 rounded-full blur-3xl opacity-0 group-hover:opacity-50 transition-opacity" />
+                            </motion.div>
+                        ))}
+                    </section>
+                </>
             )
         },
         {
@@ -306,6 +325,7 @@ const PortfolioPage = () => {
                 {/* Banner */}
                 <div className="relative w-full h-32 md:h-40 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
                     {/* Profile Image */}
+
                     <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 translate-y-1/2">
                         <Image
                             src="/images/profile.png"
